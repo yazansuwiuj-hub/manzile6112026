@@ -1,0 +1,155 @@
+import { mysqlPool } from '../db/mysql';
+
+export class CallLogsService {
+    async getMissedCalls(dateStr: string) {
+        console.log(`[CallLogsService] Fetching missed calls for ${dateStr}`);
+
+        const query = `
+            SELECT
+                q.linkedid,
+                MAX(q.uniqueid) AS uniqueid,
+                q.src,
+                'NO ANSWER' AS disposition,
+                MIN(q.calldate) AS calldate,
+                MAX(q.did) AS did,
+                MAX(q.dst) AS dst
+            FROM cdr q
+            WHERE q.calldate >= ?
+              AND q.calldate < DATE_ADD(?, INTERVAL 1 DAY)
+              AND q.lastapp = 'Queue'
+              AND q.dcontext = 'ext-queues'
+              AND q.src REGEXP '^07[0-9]{8}$'
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM cdr c
+                  WHERE c.linkedid = q.linkedid
+                    AND c.disposition = 'ANSWERED'
+              )
+            GROUP BY q.linkedid, q.src
+            ORDER BY calldate DESC
+            LIMIT 500
+        `;
+
+        const [rows] = await mysqlPool.query(query, [
+            `${dateStr} 00:00:00`,
+            `${dateStr} 00:00:00`
+        ]);
+
+        console.log(`[CallLogsService] Found ${Array.isArray(rows) ? rows.length : 0} missed calls`);
+        return rows;
+    }
+
+    async getAnsweredCalls(dateStr: string) {
+        console.log(`[CallLogsService] Fetching answered calls for ${dateStr}`);
+
+        const query = `
+            SELECT
+                q.linkedid,
+                MAX(q.uniqueid) AS uniqueid,
+                q.src,
+                'ANSWERED' AS disposition,
+                MIN(q.calldate) AS calldate,
+                MAX(q.did) AS did,
+                MAX(q.dst) AS dst,
+                MAX(q.duration) AS duration,
+                MAX(
+                    CASE
+                        WHEN c.lastapp = 'Dial'
+                         AND c.disposition = 'ANSWERED'
+                        THEN c.dst
+                    END
+                ) AS answered_extension,
+                MAX(
+                    CASE
+                        WHEN c.lastapp = 'Dial'
+                         AND c.disposition = 'ANSWERED'
+                        THEN c.dstchannel
+                    END
+                ) AS dstchannel,
+                MAX(c.wa) AS wa
+            FROM cdr q
+            LEFT JOIN cdr c
+              ON c.linkedid = q.linkedid
+             AND c.disposition = 'ANSWERED'
+            WHERE q.calldate >= ?
+              AND q.calldate < DATE_ADD(?, INTERVAL 1 DAY)
+              AND q.lastapp = 'Queue'
+              AND q.dcontext = 'ext-queues'
+              AND q.src REGEXP '^07[0-9]{8}$'
+              AND EXISTS (
+                  SELECT 1
+                  FROM cdr a
+                  WHERE a.linkedid = q.linkedid
+                    AND a.disposition = 'ANSWERED'
+              )
+            GROUP BY q.linkedid, q.src
+            ORDER BY calldate DESC
+            LIMIT 500
+        `;
+
+        const [rows] = await mysqlPool.query(query, [
+            `${dateStr} 00:00:00`,
+            `${dateStr} 00:00:00`
+        ]);
+
+        console.log(`[CallLogsService] Found ${Array.isArray(rows) ? rows.length : 0} answered calls`);
+        return rows;
+    }
+
+    async getOutboundCalls(dateStr: string) {
+        console.log(`[CallLogsService] Fetching outbound calls for ${dateStr}`);
+
+        const query = `
+            SELECT
+                linkedid,
+                MAX(uniqueid) AS uniqueid,
+                MAX(dst) AS dst,
+                MAX(cnam) AS cnam,
+                MIN(calldate) AS calldate,
+                'ANSWERED' AS disposition
+            FROM cdr
+            WHERE calldate >= ?
+              AND calldate < DATE_ADD(?, INTERVAL 1 DAY)
+              AND dcontext = 'from-internal'
+              AND outbound_cnum = '0797003356'
+              AND disposition = 'ANSWERED'
+              AND dst REGEXP '^07[0-9]{8}$'
+            GROUP BY linkedid
+            ORDER BY calldate DESC
+            LIMIT 500
+        `;
+
+        const [rows] = await mysqlPool.query(query, [
+            `${dateStr} 00:00:00`,
+            `${dateStr} 00:00:00`
+        ]);
+
+        console.log(`[CallLogsService] Found ${Array.isArray(rows) ? rows.length : 0} outbound calls`);
+        return rows;
+    }
+    async searchCustomers(searchTerm: string) {
+        const query = `
+            SELECT
+                calldate,
+                src,
+                dst,
+                disposition,
+                duration,
+                billsec,
+                cnam,
+                uniqueid
+            FROM cdr
+            WHERE src LIKE ?
+               OR dst LIKE ?
+            ORDER BY calldate DESC
+            LIMIT 200
+        `;
+
+        const [rows] = await mysqlPool.query(query, [
+            `%${searchTerm}%`,
+            `%${searchTerm}%`
+        ]);
+
+        return rows;
+    }
+}

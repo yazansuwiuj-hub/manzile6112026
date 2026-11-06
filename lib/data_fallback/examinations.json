@@ -1,0 +1,4857 @@
+[
+  {
+    "id": "1",
+    "name": "فحص دم شامل (CBC)",
+    "price": 10,
+    "requiresFasting": false
+  },
+  {
+    "id": "2",
+    "name": "فحص فيتامين د (Vitamin D)",
+    "price": 15,
+    "requiresFasting": false
+  },
+  {
+    "id": "3",
+    "name": "فحص السكر التراكمي (HbA1c)",
+    "price": 8,
+    "requiresFasting": false
+  },
+  {
+    "id": "4",
+    "name": "وظائف الكلى (Kidney Function)",
+    "price": 12,
+    "requiresFasting": true
+  },
+  {
+    "id": "5",
+    "name": "وظائف الكبد (Liver Function)",
+    "price": 15,
+    "requiresFasting": true
+  },
+  {
+    "id": "6",
+    "name": "دهنيات الدم الكاملة (Lipid Profile)",
+    "price": 12,
+    "requiresFasting": true
+  },
+  {
+    "id": "7",
+    "name": "فحص الغدة الدرقية (TSH)",
+    "price": 10,
+    "requiresFasting": false
+  },
+  {
+    "id": "8",
+    "name": "فحص الحديد (Iron)",
+    "price": 8,
+    "requiresFasting": false
+  },
+  {
+    "id": "9",
+    "name": "فحص فيتامين ب12 (Vitamin B12)",
+    "price": 15,
+    "requiresFasting": true
+  },
+  {
+    "id": "10",
+    "name": "تحليل البول الكامل (Urinalysis)",
+    "price": 5,
+    "requiresFasting": false
+  },
+  {
+    "id": "03290db2-f84a-4d8f-b691-bf1dd1ddc335",
+    "name": " Vitamin B12",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "64fc3d66-818b-4634-90b4-9e44957a8484",
+    "name": "17-OH Progesterone",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "30e185ef-9b0c-49ac-8c9a-90ce5477844a",
+    "name": "3. Parasites",
+    "price": 0,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "07b30fb9-1f65-4399-bf7b-f239abe74984",
+    "name": "5-Hydroxyindole Acetic Acid (5-HIAA)",
+    "price": 21,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ad59328d-e2e8-4913-ac1d-41cde3ee2e27",
+    "name": "ACTH (PM)",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d537da27-3511-458a-a943-c43cf4ace323",
+    "name": "ACTH AM",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ec7dd414-f876-4735-a28a-77e366218551",
+    "name": "AFP",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "86a71be3-3d98-40b6-8255-bbc9d17563c9",
+    "name": "AMH (Anti Mullerian Hormone)",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dddc557a-90f7-47fc-a850-2a6baa84694a",
+    "name": "ASCA IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d248d8fc-65d6-4607-8ae3-c728d514c806",
+    "name": "ASCA IgG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "83f6310b-819f-4bce-bdfe-c3ed936b0ba5",
+    "name": "Absolute Eosinophils Count",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e2cdf3b3-e313-4737-bb13-cafc1a9d488d",
+    "name": "Acetaminophen (Paracetamol)",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b6cb98ab-ff69-432e-bfe1-ad262fb0bab6",
+    "name": "Acetone",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0b549401-6a21-4b49-b5db-eb6f6a4223b7",
+    "name": "Acetylcholine Receptor Abs (Qualitative)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7add92aa-56f0-4313-b7f9-ad09fe339181",
+    "name": "Acetylcholine Receptor Abs (Quantitative)",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "65ce369d-8d7c-4b01-8437-e77f4d9a0791",
+    "name": "Acid Phosphatase (Total)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7890fbd1-d7c3-4f71-a41c-7275e309c3bc",
+    "name": "Adeno &Rota virus antigen",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9659574d-ed27-4824-b434-989fbb089848",
+    "name": "Adrenaline",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1b737cea-4038-44fc-bc44-6cad186bf721",
+    "name": "Adrenaline (Epinephrine) 24hrs Urine",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3b022e51-800d-41de-a0b1-36b648c5c533",
+    "name": "Aerobic Blood Culture",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ef0ad0d6-a3e9-4b71-9b08-ab43c62a6283",
+    "name": "Albumin",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d62febdc-6afa-4ead-aece-b9d43de61227",
+    "name": "Albumin Spot Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "416014a9-2286-45af-893b-04abd79ff87a",
+    "name": "Albumin in Urine (24hrs)",
+    "price": 7,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "eb75d991-04bf-4340-932a-3bb4c0ffde1f",
+    "name": "Albumin/Creatinine Ratio",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1e9c2e36-4d43-4c64-8302-3ddcc5a7d2ce",
+    "name": "Aldolase",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "026d91c0-fe2d-4848-bf44-27a216d3d1be",
+    "name": "Aldosterone",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cf5e5db5-c86d-4ed9-b807-092d3b01b815",
+    "name": "Aldosterone in Urine (24 hrs)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c15ca710-7704-4a78-8f1d-5819876b63ba",
+    "name": "Aldosterone/Renin Ratio",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3cceed3a-6ebe-492b-849b-7e29bfcb830d",
+    "name": "Alk Phosphatase",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e8ba2701-e8d5-47ba-bbdb-1ea1fc4b9b5e",
+    "name": "Allergy Panel -Inhalation",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8152c3cb-c0f3-46a0-9e64-e6c03d8aaa63",
+    "name": "Alpha - Thalassaemia by PCR",
+    "price": 120,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fcd34205-99c1-4cdc-9de1-97e6cb3a3dda",
+    "name": "Alpha 1 Anti trypsin",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fd7b4884-b810-4acd-9f79-c98fb4fde23b",
+    "name": "Amikacin",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7a795666-a61b-47fb-b58d-a5a003eea28d",
+    "name": "Amylase",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "39b7bfe7-aefb-49f2-9284-cbbcc66db846",
+    "name": "Amylase Body Fluid",
+    "price": 3,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5a2e9caa-ec98-45e7-93e3-44aeff9deb68",
+    "name": "Amylase in Urine",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3c6d409b-1cbb-4fd1-8260-fa3d79e56cda",
+    "name": "Amyloid A",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9a903ab3-80ec-41ae-9911-33fc17a49768",
+    "name": "Anaerobic Blood Culture",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5ea89f83-5fdf-47cd-aebe-7b10a1bc444f",
+    "name": "Androstenedione",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f2f1cd1f-0dec-4211-bd76-786d6041f9f2",
+    "name": "Angiotensin Converting Enzyme (ACE)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0b7a0515-ce36-4853-bcfd-90aed6bacbb4",
+    "name": "Anti Aquaporin IV Abs (Neuromyelitis optica) IgG",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "706dcebf-a5cf-42e4-bef5-5b0cd7ff09ac",
+    "name": "Anti Aquaporin IV Abs (Neuromyelitis optica) IgM",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "770159e9-4b39-4b04-bec3-c103e5761073",
+    "name": "Anti CCP Abs",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "847b87a5-0764-4142-a53e-864000ad6e69",
+    "name": "Anti Cardiolipin Abs IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8fe45148-a1f1-461a-bee8-efc4f86255cb",
+    "name": "Anti Cardiolipin Abs IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8ca67da6-d1e7-4f6f-8a32-b3a3893ba50e",
+    "name": "Anti Centromere Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "14aa8cd4-3067-4af4-ab08-6b2098dfdba3",
+    "name": "Anti Diuretic Hormone - Vasopressin (ADH)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "02d06ac4-fd20-4e6a-a363-ad6c64d9744f",
+    "name": "Anti Endomysium IgA",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "22214308-dead-427c-92b7-9a7bd1f227d6",
+    "name": "Anti Endomysium IgG",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "24dff6be-d86d-4fa9-9f2d-ed75528b640a",
+    "name": "Anti Gangliosides-7 Abs IgG",
+    "price": 28.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4b660f2a-2e16-4ebf-a33e-91a469d8f9aa",
+    "name": "Anti Gangliosides-7 Abs IgM",
+    "price": 28.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5ba19d1d-6898-4aeb-874c-4d86db1382a4",
+    "name": "Anti Gliadin Abs IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8edc140c-3520-4c38-93a5-01cad22eec79",
+    "name": "Anti Gliadin Abs IgG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0843d438-85fe-4072-8e24-10015520d3a3",
+    "name": "Anti Gliadin Antibodies IgA (Deamidated Gliadin-Analogue Fusion Peptide)",
+    "price": 13,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f795c5ab-2077-48cb-874c-5e08dc7c4df4",
+    "name": "Anti Gliadin Antibodies IgG (Deamidated Gliadin-Analogue Fusion Peptide)",
+    "price": 13,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f0c59804-0331-4c7e-aed6-5be10ff056e5",
+    "name": "Anti Glomerular Basement Membrane",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f622786b-a80e-432a-bca8-6b97ec4bcca8",
+    "name": "Anti Glutamic Acid Decarboxylase (Anti GAD)",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ff770ccd-6a44-4927-b194-dc72a7cad23f",
+    "name": "Anti Insulin Abs",
+    "price": 27,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ae862d1e-6cce-4927-9c5c-5302d91d5c6f",
+    "name": "Anti Islet Cells Abs",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2c410430-3968-4f22-b23c-7ffb9b6cc08a",
+    "name": "Anti Mitochondrial Abs AMA",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1659f9e3-2d13-4dfd-98b3-0750b9615212",
+    "name": "Anti Muscle Specific Tyrosine Kinase (Anti MuSK)",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "99f1ad17-2351-49b5-bf89-08e699ed109e",
+    "name": "Anti Myelin Associated Glycoprotein Abs (Anti MAG)",
+    "price": 27,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e597f321-7b67-4958-a8f0-26eda814e084",
+    "name": "Anti Neuronal Antigens Antibodies IgG - 6",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "89247b10-3a24-4ee1-95eb-70607438d3a9",
+    "name": "Anti Neuronal Antigens Antibodies IgM - 6",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dd029ef5-cf27-459e-a615-80c882813f9c",
+    "name": "Anti Neutrophil Cytoplasmic Antibodies",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "acd483d1-0f28-4e92-9138-326b450e4b66",
+    "name": "Anti Nuclear Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d1072655-ee25-4e8b-9b12-59de5533e87e",
+    "name": "Anti Ovarian Abs",
+    "price": 16.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3283efca-a34e-4046-b414-956fd16972cd",
+    "name": "Anti Phospholipid  Abs IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f990b1d0-8295-44f7-a83f-62ddfed60a87",
+    "name": "Anti Phospholipid  Abs IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "18e02dce-d474-4cfd-9ee6-569cf9cc4012",
+    "name": "Anti Platelets Abs",
+    "price": 13.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "33a3099f-5915-4cdd-8ba4-1f322e92b8d5",
+    "name": "Anti Rickettsia Antibodies IgG",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "33d11d7d-1160-4067-b61d-472d69bcb47e",
+    "name": "Anti Rickettsia Antibodies IgM",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ef319f69-5c4c-4757-b8c3-7980a2721340",
+    "name": "Anti Skeletal Muscle Abs",
+    "price": 16,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bdb2bee5-2d78-4b5e-b6c8-41e628a66194",
+    "name": "Anti Smooth Muscle Abs (ASMA)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "35cc7483-edcd-4f8c-be6e-4195a740c0e1",
+    "name": "Anti Sperm  Abs",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ca71ba5c-c05d-43c4-af04-669b2ef5d830",
+    "name": "Anti Streptodornase (Anti DNase-B)",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7404e30b-d011-45ed-81ce-76b92711051f",
+    "name": "Anti TSH receptor Abs",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "047ff290-ecb6-4b3c-9002-ecce7d60f693",
+    "name": "Anti Thyroglobulin Abs ATG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2965c996-5c63-4dab-9eb9-009540d0b530",
+    "name": "Anti Thyroid Peroxidase (ATPO)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "67041d4a-5ab0-45c2-8b92-39ee44851461",
+    "name": "Anti intrinsic factor Abs",
+    "price": 21,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2a7aa979-b1b0-4526-ae4e-c627165af861",
+    "name": "Anti parietal cells Abs",
+    "price": 12.75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "91eb5c90-0c07-4757-bd0e-948d04b35db0",
+    "name": "Anti-Streptolysin-O (ASO)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c4678488-8743-43ae-92b9-617fa1d9e8fa",
+    "name": "Antithrombin III",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "642468e3-3ace-4739-95f8-9947ce4e034f",
+    "name": "Apolipoprotein A1",
+    "price": 11.25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5cb6703e-db88-4852-b06f-cbc6f445a0a3",
+    "name": "Apolipoprotein B",
+    "price": 11.25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ddb80ec0-c2a5-41d4-9da9-7a83c900596a",
+    "name": "B2 Microglobuilin",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "21ca759e-bf0b-4d61-a1ce-ccf7064a6d8d",
+    "name": "BHCG",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8505da04-e260-48b7-84c0-eae05930cbc7",
+    "name": "BUN",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "908dc9bd-0215-4ace-90fc-f6c609f8c73e",
+    "name": "Barbiturates",
+    "price": 18,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dea885db-41c3-4323-a2af-88445e735c8d",
+    "name": "Bence Jones Protein",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a6e34f36-11a9-4774-bddc-f56c088c9d07",
+    "name": "Bicarbonate",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2a31b4df-37a7-43c8-822e-e53ad5fe26c2",
+    "name": "Bilirubin (Direct)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "749533bd-5db6-45c0-89e9-a64e64f09722",
+    "name": "Bilirubin (Indirect)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b1ac5c23-fc5c-4e7c-96f4-e8c1555314a4",
+    "name": "Bilirubin (Total )",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dc24e1b3-dd6b-43cb-814a-264cdeea8c3d",
+    "name": "Bilirubin Body Fluid",
+    "price": 3,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9ec26dac-f186-4470-b308-19af9d11d5b3",
+    "name": "Bleeding Time",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4e946943-f5d7-47c3-94f5-d239136d0f78",
+    "name": "Blood Gases",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8ca90a95-ba23-4a58-953f-c774760a4bc8",
+    "name": "Blood Group",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "03b451b3-036b-403d-b7fb-57a62919ac6f",
+    "name": "Blood film",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5b8fd80b-eaf2-44df-9cf8-690274186b7e",
+    "name": "Bordetella Pertussis Abs IgG",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4d5a0c20-9629-4611-ba64-9e42f952a284",
+    "name": "Brucella IgG",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4f57763c-c374-40e7-b039-b0bf1902cce7",
+    "name": "Brucella IgM",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "25833ce8-ae29-4e38-8739-6d4c1ae1d973",
+    "name": "Brucella Test Rose Bengal",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9fd4db01-7ba6-4c3b-bace-0d6d2bb22e87",
+    "name": "C - Peptide (Fasting)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7d35360b-5a10-4e93-9c95-b5489c6b2d82",
+    "name": "C - Peptide (Postprandial)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9f5901b5-0b63-4d00-bff5-9c7270a23689",
+    "name": "C1 Esterase Inhibitor Level",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4bb06db1-f47c-49bf-850c-30b420e25276",
+    "name": "CA 125",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2a9c6f79-42e7-4384-beda-27d9f6749c6f",
+    "name": "CA 15.3",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c444cac6-72be-429c-b9de-2cf8759ae9c6",
+    "name": "CA 19.9",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2294bfbd-e6a7-4472-ac92-9522ff2d6709",
+    "name": "CD Marker 4 (CD 4)",
+    "price": 26.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5aed0dd0-62a7-433f-9d36-c49ec7938d01",
+    "name": "CD Marker 55 (CD 55)",
+    "price": 26.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8d75ac5b-21f2-4d26-afe0-78296c42d11f",
+    "name": "CD Marker 59 (CD 59)",
+    "price": 26.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c41ab482-35c6-41d1-9ffd-041381c6c5f0",
+    "name": "CD Marker 7 (CD 7)",
+    "price": 26.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e3adf3bd-3427-4174-b548-af8433497173",
+    "name": "CD Marker 8 (CD 8)",
+    "price": 26.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f0f22ec4-135e-4d08-90b2-ab16a7c499b6",
+    "name": "CEA",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "785c31ab-0570-4160-b604-93c45effd021",
+    "name": "CK (MB)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "69ee26a6-7f86-416e-8f84-79f86bc71901",
+    "name": "CK (Total)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "601d8dee-e751-461a-b6f6-38c394282ca4",
+    "name": "CMV Abs IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "af4f4c0d-bfe3-4287-a7da-d849d1f5f77a",
+    "name": "CMV Abs IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90270859-b1e4-4d9d-bb98-b719a84ab401",
+    "name": "COVID-19 Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "98c01fe1-f0ac-47e7-bd21-9408f70c88c3",
+    "name": "COVID-19 test by RT-PCR",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cab03a12-8d5d-495e-925c-0969cc7ea072",
+    "name": "CRP",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3068b596-0401-4cfa-b24f-2eeca693d0c5",
+    "name": "CSF C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0692d57f-c456-4b4f-ac5e-bc96265600a1",
+    "name": "Calcitonin",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8e126cd1-c5ff-4d06-8647-19d071fd7ab3",
+    "name": "Calcium (Total)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "04337317-300d-4f5a-a6a9-47a9d3dcf90f",
+    "name": "Calcium (Total)Calcium in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2af91ecc-2981-464a-8e6f-dc7bf8ba420f",
+    "name": "Calcium Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "564bec8d-7bb3-4991-ae18-3485a5f4d797",
+    "name": "Calcium ionized",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5fa69bd6-096a-44fd-960e-d528b4db2039",
+    "name": "Calprotectin Stool",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f04eb8ed-9aa3-4522-9e8b-fbacfac16b5f",
+    "name": "Cancer Antigen 72.4 (CA 72.4)",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bde575fa-b564-477f-85bc-3a569d1bf4f7",
+    "name": "Candida Abs IgA",
+    "price": 31.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dbdd89d0-7ca3-48eb-a2ba-4d4772198f5b",
+    "name": "Candida Abs IgG",
+    "price": 31.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e42e6e00-2f7e-4dd7-92e3-6fc843633b32",
+    "name": "Carbamezapine (Tegretol)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "68a83fc6-b796-4ee3-b972-3128adcd6e2b",
+    "name": "Cardiovascular Disease Mutations - 12 (CVD)",
+    "price": 82.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4858a23f-ad55-45cb-ba6e-3f0f208ee7f1",
+    "name": "Carnitine Total",
+    "price": 41.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "14ed3e59-92bb-43a7-b8e2-d2efc50f2976",
+    "name": "Carrier Screening Sequencing",
+    "price": 600,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "16318f39-5307-426c-8ceb-69c1e18291f1",
+    "name": "Catecholamines",
+    "price": 43.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9a3975ba-8a3e-4850-afd0-431a671f7102",
+    "name": "Ceruloplasmin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7c4dcfff-4455-45fc-bec2-38615ec1ff57",
+    "name": "Cervical Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5c45302d-c15e-42a5-96c8-80013644f256",
+    "name": "Chlamydia Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "155d5894-10eb-4599-8774-97078f270d65",
+    "name": "Chlamydia trachomatis Abs IgG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "13a1ef84-11cd-4ff9-b232-2872e2bbe506",
+    "name": "Chlamydia trachomatis Abs IgM",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "59515597-ebb0-4c47-85d9-ef63205eb1bd",
+    "name": "Chloride Serum",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "265c5d9e-99e7-42eb-84a9-1ecbcd1e45aa",
+    "name": "Chloride Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ce3405d3-e11d-40a8-a280-1d0a320250a9",
+    "name": "Chloride Urine (24 hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3478a5da-ee70-438f-ac5c-7d221fb43900",
+    "name": "Cholesterol",
+    "price": 2,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "07c4763f-5404-4291-8e59-8977ce972b2c",
+    "name": "Chromium",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4f4c943d-754e-4684-9cfa-5fe8d49715c9",
+    "name": "Chromogranin A",
+    "price": 67.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8193a1d9-e75a-4982-a5d6-c76eb55475d0",
+    "name": "Chromosomal Study Karyotyping",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0d99b30c-386f-4f61-b153-9d22ba49e4d1",
+    "name": "Clostridium Difficile",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cbd1bc80-5822-4b3e-abf2-4970fd5ea2bd",
+    "name": "Clotting Time",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "74b92e1a-b899-4cae-968c-7130d732067f",
+    "name": "Coenzyme Q10",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f30cc001-c87c-473c-9717-dfdd19ed7ff2",
+    "name": "Cold Agglutinins",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "08ee958b-227a-4baf-9d6d-00b651ce7644",
+    "name": "Complement 2 (C2)",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "000d9821-ed24-46b1-8ce8-266ba26e935d",
+    "name": "Complement 3 (C3)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "230a05ac-2f45-429b-b007-7507ace08a21",
+    "name": "Complement 4 (C4)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "84a99bcd-39ff-49af-b99f-f4b4f40535c5",
+    "name": "Complement Hemolytic 50",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "30aec9d8-8e1d-4753-b57e-2d17c9985620",
+    "name": "Complete Blood Count ( CBC )",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8f68a0e3-2e09-43a0-99bf-caff2bce9cc1",
+    "name": "Coombs Test (Direct)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "897947fc-995f-40dc-b8bd-732427a2fa67",
+    "name": "Coombs Test (Indirect)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1c33b70f-85d9-4509-9f26-3950d46c9fb6",
+    "name": "Copper (Serum)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "25dc1a61-3250-4d02-b646-2d472374faa6",
+    "name": "Copper in Urine (24 hrs)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b9ad89a5-13ab-4f67-991d-7b951b33f2e0",
+    "name": "Corrected Calcium",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8cdb2490-959b-4e37-bca4-ed50442ad41d",
+    "name": "Cortisol  (7 - 10) AM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7a192d23-9692-4b90-8a0f-e7d1d70df918",
+    "name": "Cortisol (4-8 ) PM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "93799bf7-2a3d-40a8-b4d6-21c9770abb37",
+    "name": "Cortisol 12 AM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e5c49f83-04c4-4650-9086-726a84df8e04",
+    "name": "Cortisol In Urine (24 hrs)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bbad540c-7b2d-4d95-aac8-81d551e6a071",
+    "name": "Covid 19 Abs",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8125b43e-d1a7-476d-9ac5-7c442b7c7ad3",
+    "name": "Creatinine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0e2a9166-485d-4668-997d-9f125fad6d20",
+    "name": "Creatinine Spot Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "21fb3133-6be6-4bae-abe8-88fcba853449",
+    "name": "Creatinine in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9e1e6679-2993-4713-b3b2-59b660e5ddb5",
+    "name": "Cryoglobulins",
+    "price": 5.25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2066374d-c821-44bf-8738-ddd550b3cc62",
+    "name": "Culture",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0bb11565-de4a-4549-96ed-53b8765876f4",
+    "name": "Cyclosporine",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e0e780b8-e122-40fe-987e-443207034b27",
+    "name": "Cystatin C",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90ce6530-9ab3-4628-a74a-ebd0813ff4f1",
+    "name": "Cystine in urine (24hrs)",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f30b2c49-c7a3-48f7-ac4a-24d12ec42d0d",
+    "name": "Cytology",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "57209c97-c9da-49ee-b75e-84332ebb052f",
+    "name": "Cytomegalovirus Viral Load (CMV - Quantitative)",
+    "price": 68,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dcc580eb-9c87-4e10-9e3d-ab5e6e31ac0a",
+    "name": "D-Dimer",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3090d8d8-f3d2-4a67-acfe-ac4a09637391",
+    "name": "DHEA-S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "912e945b-5fb0-4238-8477-2af81009daa3",
+    "name": "Depakin (Valproic Acid)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "41962947-3220-4969-905d-88fa2ba855e9",
+    "name": "Digoxin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7d158fa7-b832-48c4-860b-ea640013abb5",
+    "name": "Dihydroepiandrosterone (DHEA)",
+    "price": 27,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4ffd5178-08b3-4b67-b81d-e388868074ec",
+    "name": "Dihydrotestosterone",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "61f0c3ed-31cf-4343-8ef4-85cc35a55b31",
+    "name": "Diphtherie Toxoid Abs",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5a67278b-fddc-4c1c-915f-77e95958f7b3",
+    "name": "Dopamine",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f75e00b1-48b4-4983-b289-1a5aa83a9caf",
+    "name": "Drugs Screening",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a74772e2-9392-4ebb-8604-6f643d3e1a29",
+    "name": "Duchenne & Becker Mascular Dystrophy",
+    "price": 262.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "94d6b087-cbf9-44df-9964-98e6b1a83148",
+    "name": "EBV VCA Abs IgG",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9d25a364-3e93-4f35-9254-620f390d96b4",
+    "name": "EBV VCA Abs IgM",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f05d6dbd-fadf-4481-b963-a24af055125f",
+    "name": "EBV by PCR - Quantitative",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4a9c1d67-e4f4-4c15-ab49-205e4b2abfc9",
+    "name": "ESR (1st hour)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7797d464-463a-4eed-9613-4a4c49ff4efd",
+    "name": "ESR (2nd hour)",
+    "price": 0,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "550c448f-d120-41a5-94b2-3919b30f8b34",
+    "name": "Echinococcus granulosis Antibodies (Hydatidosis)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dbdeee8e-84f8-458f-bee0-604f39b81a04",
+    "name": "Elastase (Pancreatic) in Faeces",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "60b7b3cf-cd87-4218-9448-eea8e930ae1f",
+    "name": "Electrolytes",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "47affd6c-d1c7-4ebc-abef-9d472fccb111",
+    "name": "Entamoeba histolytica/dispar Antigen",
+    "price": 13,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ef516ddd-c1b2-4f53-9371-305341c4f418",
+    "name": "Epstein-Barr Virus Nuclear Antigen Antibodies IgA (EBV-NA IgA)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "97965aff-552e-4f7e-804e-67614dbdb7a2",
+    "name": "Erythropoietin",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "695ae6b8-d57d-46bd-9ba3-75c97fa00e4d",
+    "name": "Estradiol ( E2 )",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b94ec54f-b257-4e70-9a8f-28764023c4ef",
+    "name": "Estriol ( E3 )",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fe08ed73-845e-4d2f-80ac-6be85ed5ccb3",
+    "name": "Ethanol ( Alcohol ) Serum",
+    "price": 13.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6144d698-a594-4b11-878f-326220bc6c44",
+    "name": "Ethanol ( Alcohol ) level",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1395b73a-cff9-45dd-aa84-17c52717dce6",
+    "name": "Extractable Nuclear Antigens (ENA)",
+    "price": 27.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e7127c12-4df0-4c5a-865c-2294f9a0572c",
+    "name": "FLUID",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a5a28fa8-ad8e-4313-a2e9-0e2690f4f508",
+    "name": "FSH",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8f0512d5-341f-49e3-a6f6-28d396a39c2e",
+    "name": "Factor II (Prothrombin) G20210A Gene Mutation",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "56106641-442f-46ae-8f22-8d98ed97ce61",
+    "name": "Factor IX",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a04c9c09-7fbf-444d-8049-a91759d8d7e4",
+    "name": "Factor V (Functional )",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c130903b-c178-455d-94bc-f65121b4dd30",
+    "name": "Factor V - Hong Kong Gene by RT-PCR",
+    "price": 31.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4e376887-7d6c-4b33-8613-e439555c72cd",
+    "name": "Factor V Cambridge Gene (R306T)",
+    "price": 31.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "294a7168-6904-40a5-853b-06f31d138837",
+    "name": "Factor V Leiden",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ed2e3fea-5bcc-4378-a4c4-e0890189c39f",
+    "name": "Factor VIII",
+    "price": 35,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0ef90e63-9b47-4852-9099-109388e9fa7d",
+    "name": "Factor XIII (V34L)",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1e177ae5-5df4-4c6b-b1d5-3a86ac6cc549",
+    "name": "Familial Mediterranean Fever FMF by PCR",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "25758483-2fc0-4392-bbc5-40c203c87e6f",
+    "name": "Fasting  blood sugar",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b060b5d7-a021-4f89-b7ba-b2f64ad07ffc",
+    "name": "Fecal Immunochemical Test (FIT)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "453716cf-8967-44b9-96f9-8c80c3d41389",
+    "name": "Ferritin",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8c49f60d-211e-4c4e-a03b-d2cf42543c10",
+    "name": "Fibrinogen",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bec95237-96a7-419c-9e5d-850ec905b197",
+    "name": "Folic Acid (Folate)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "df44d9e8-4cf4-4b3f-9020-14ba810c498b",
+    "name": "Food Allergy Panel",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4a11023c-a7b7-4d47-8d5f-b350db6fee82",
+    "name": "Food Intolerance Test",
+    "price": 150,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "afcf83eb-9628-4802-ad4d-df9dbfa5eea7",
+    "name": "Fragile X Syndrome",
+    "price": 150,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f0e97985-7d37-4fe6-bc14-76d0fd81424c",
+    "name": "Free Androgen Index (FAI)",
+    "price": 28,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5b257ce7-091f-41c1-89d1-2a4af3504d15",
+    "name": "Fructosamine",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b70eb236-57cf-4581-a8c5-eec0259f08c9",
+    "name": "Fungi Culture",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "760224bd-967c-4137-a755-2b529de50a44",
+    "name": "Fungi Culture with Sensitivity",
+    "price": 35,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e7c32a61-01c3-46a6-861e-d8279415eda5",
+    "name": "G6PD ( Quantitative )",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d9bfda14-0e32-48c8-888c-52a28fbb0397",
+    "name": "GGT",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "80127964-9e1d-4e72-b930-4efe394b52e1",
+    "name": "Gastrin",
+    "price": 20,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d500acbd-ffb2-40ef-9293-22fcbc46ac5f",
+    "name": "Gentamicin",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1da06b0d-6789-4fcc-98a8-21ea86460a19",
+    "name": "Giardia Ag Screening",
+    "price": 16.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9b5d2a75-84ac-40a0-816b-6be962b80621",
+    "name": "Globulin",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ab576811-3a71-4dde-8aec-00b5a62629e7",
+    "name": "Globulin",
+    "price": 2,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f146e9c5-7b2c-46dd-b488-9a2587ad3128",
+    "name": "Glucose Tolerance ",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "48328f12-9c24-4923-b2d5-d22bca8f3fcd",
+    "name": "Glucose challenge test",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c8074054-474d-4b66-929c-f132a64f9c3f",
+    "name": "Gram Stain",
+    "price": 3,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8358dcfb-97dc-4cd9-9b47-42e086a4a94c",
+    "name": "Growth Hormone",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e1ec1e78-b536-4060-8301-45dc20a89bc7",
+    "name": "Gum Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "69ea0b7a-166f-4db6-9e7e-c32187c1164c",
+    "name": "H-Pylori Abs (Screening)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e15650f2-09c7-49b4-9c18-44c537072c55",
+    "name": "H-Pylori Ag in stool",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e1668feb-b266-4321-b74e-2642deaf8eab",
+    "name": "H-Pylori IgA",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90fcf560-74cd-4ba8-9c9e-0038c74a0d58",
+    "name": "H-Pylori IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6a2d6e7c-c153-498f-bb41-5a7a5d5cba7d",
+    "name": "HAV Abs (IgM)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0cd279d5-6ecc-4976-b1f1-cf8bd090a5e3",
+    "name": "HBV - DNA by PCR (Quantitative)",
+    "price": 70,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0f8a2f1a-0e43-4c74-836e-69b943cb485f",
+    "name": "HBc IgM Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "625e891a-4fd1-4daa-8cb3-bf602df4a581",
+    "name": "HBc Total Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6e891299-98e5-47ba-9f26-fd920339c14d",
+    "name": "HBe Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "55ed0ca1-13af-4b87-8392-0120fae6592e",
+    "name": "HBe Ag",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "74355041-29d2-4d74-944b-7abe44344be2",
+    "name": "HBs Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6f7201e0-2618-4de6-ba01-a2c78500a4ce",
+    "name": "HBs Ag",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ef3c36c6-583a-4f01-bc29-f18c43ce249f",
+    "name": "HCV - RNA by PCR (Quantitative)",
+    "price": 70,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1daaeb28-4eae-44fc-8bc6-226a0b0bec2a",
+    "name": "HCV Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b0e71b38-fb4b-4d32-aea8-f4749e486547",
+    "name": "HDL( High-density Lipoprotein)",
+    "price": 3,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ec7abf02-8636-435d-bc1e-e940f32a073a",
+    "name": "HIV 1+2 Combo Ag/Ab",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "49cb1da8-885a-4a3e-b7e6-a1cbaff3cd0f",
+    "name": "HLA B (High Resolution)",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8145df84-213e-4e19-85bd-12f4c1f4db06",
+    "name": "HOMA IR (Insulin Resistance test)",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5b79f676-67f3-4bdd-9c5d-316ed93fcaa3",
+    "name": "Haemochromatosis",
+    "price": 82.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9933f96b-4f6b-46a0-a837-7bc935ca8b89",
+    "name": "Haptoglobin",
+    "price": 13.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "635c3445-25d1-4c55-95d3-b5229aff41ba",
+    "name": "HbA1C",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "878eca1b-adc5-4a99-829e-2e859063e9c7",
+    "name": "Hemoglobin Electrophoresis",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "009aae74-d5cf-461c-a7a0-834a5651ad7d",
+    "name": "Hemoglobin Electrophoresis",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4d94f493-717a-4c61-b454-e94c446d4a9a",
+    "name": "Hemoglobin Level",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7a1f51a8-b1b5-407c-af67-491ca054a579",
+    "name": "Hepatitis A Virus Abs - Total",
+    "price": 8.25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e72ee2c0-07fa-4541-8d6f-e55f41566f8e",
+    "name": "Hepatitis A Virus IgG Abs",
+    "price": 8.25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "96107904-40eb-425e-9060-0cfb2955c76e",
+    "name": "Hepatitis C Genotyping",
+    "price": 112.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "63073115-4224-43e0-a336-4716343a17cd",
+    "name": "Herpes Virus Abs IgG I",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bd898217-e801-4288-b09b-6ac60730f240",
+    "name": "Herpes Virus Abs IgG I & II",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "82da2af2-93c5-424e-987e-f847b5253b44",
+    "name": "Herpes Virus Abs IgG II",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d9415b05-1a95-48c4-a2e1-805564bb077a",
+    "name": "Herpes Virus Abs IgM I",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "594290b9-1b48-402a-ae08-69e7c4cd3db6",
+    "name": "Herpes Virus Abs IgM I & II",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e5e48a7a-5384-4cd0-8884-6af21e187aa8",
+    "name": "Herpes Virus Abs IgM II",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "492d98bd-749b-46c4-b49f-7cbee8db6319",
+    "name": "High-sensitivity C-reactive protein",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ac103f2c-0a0f-4546-9cb1-cec8c7eb7017",
+    "name": "Homocysteine",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ea07a3e4-a58c-4708-b368-ac7b41438a29",
+    "name": "Human Leukocyte Antigen B27",
+    "price": 39,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "49ccc4e4-9db3-48f9-b356-6c144835d144",
+    "name": "Human Leukocyte Antigen B5",
+    "price": 35,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5e37a0d3-c257-47bd-bbe5-f10dc70fb859",
+    "name": "Human Papilloma Virus (HPV)",
+    "price": 82.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b7359d8e-db82-45c1-a527-c33b7089f932",
+    "name": "IgG Subclass IV",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "64a76dae-482a-4f66-adb1-86a266924f6a",
+    "name": "Immunofixation (Immunoglobulins Electrophoresis)",
+    "price": 40,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5f285824-09f6-4074-af54-f9ecdc4514ae",
+    "name": "Immunofixation in Urine (24 hrs)",
+    "price": 40,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "20481b10-0b3f-4e0e-b006-a19fdaba1719",
+    "name": "Immunoglobulin IgA",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "eaf542ed-2710-486f-98a5-f912b393cf7f",
+    "name": "Immunoglobulin IgD",
+    "price": 24,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9d427138-c769-4a02-96a8-32e3becbc5ec",
+    "name": "Immunoglobulin IgE",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a6475a93-3eef-4802-8be8-ce5a5d81840f",
+    "name": "Immunoglobulin IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3e0323da-16a7-4b1a-ab88-9e696592f6de",
+    "name": "Immunoglobulin IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "892c8433-550c-41d1-b2da-cc5f02c2985b",
+    "name": "Influenza-A Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a764c27c-bbdd-4524-ac58-1015460c234a",
+    "name": "Influenza-B Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b24a607c-73b2-4b35-87df-f69979b5bf3c",
+    "name": "Inhibin A",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b0de8f84-ba5f-4f3d-9230-242b5c68c293",
+    "name": "Inhibin B",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d6f81db8-9333-4c06-8e8c-40ebb6c5c702",
+    "name": "Insulin ( 120 min )",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4e65aa38-0726-48d1-afce-a2fb744f3a5b",
+    "name": "Insulin (60 min)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d8836992-7077-4bfa-a0b7-bbcde5343f21",
+    "name": "Insulin (90 min)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e84e2942-aa18-401b-80d2-261f859fd9bd",
+    "name": "Insulin (Fasting)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d84e4d23-ed98-4707-b2dd-5de5f5d772ae",
+    "name": "Insulin (Postprandial)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ab24180c-6265-42e7-bca3-07288662eb3c",
+    "name": "Insulin Like Growth Factor Binding Protein - 3 (IGFBP-3)",
+    "price": 39,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5ce9a752-e904-4e2c-9af6-0e7321d7bc69",
+    "name": "Insulin Like Growth Factor I",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "01e90928-986f-4f6a-a961-2e7b565b7b3f",
+    "name": "Interleukin-6",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "873926df-6399-4aa9-b606-d8ee11abde04",
+    "name": "Iron",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1419ac23-17f3-4a46-b91e-e8cd008efc04",
+    "name": "Jak II",
+    "price": 97.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5371792e-47af-4bca-a55d-8ea3c52db8fe",
+    "name": "KOH",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b3857dc2-ce0f-40cf-9797-608a6ba91eeb",
+    "name": "Kappa Light Chain (Total)",
+    "price": 17.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "02c9210a-17aa-49bd-b3ac-7bc7d3b2deee",
+    "name": "Keppra (Levetiracetam)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4b91f8c6-8c3c-4acc-9ab4-7b6992b15aea",
+    "name": "Kidney Profile",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "568bd726-9c1d-4933-878f-9932150124af",
+    "name": "Knee aspirate C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a0827eb9-50be-47dd-bf3a-00d425f6c505",
+    "name": "LDH",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "774198ba-55e4-4a63-8cc6-fd7b0d8a9904",
+    "name": "LDL (Low-density Lipoprotein)",
+    "price": 3,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "da674818-4d39-49a4-8e50-1bd696fedc6d",
+    "name": "LH",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fb804863-f849-4592-b2eb-d93de70420a1",
+    "name": "Lactate (Lactic Acid)",
+    "price": 12.75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "91693398-17f7-42c5-8437-c62cf9bbfb4f",
+    "name": "Lactoferrin",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f973eac8-da51-417f-8ad5-4e308f79985d",
+    "name": "Lambda Light Chain (Free)",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "01268d6e-68a1-4f8d-9cc0-ad7d8e81266e",
+    "name": "Lambda Light Chain (Total)",
+    "price": 17.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "98dfe6ae-67d7-491e-9824-7765ea964358",
+    "name": "Lamictal (Lamotrigine)",
+    "price": 67.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ee39909b-43bd-4c20-b448-bc29e21dc8e3",
+    "name": "Lead",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "042bc79c-08e4-499d-8a63-80d985e00f24",
+    "name": "Left Conjunctival Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "30bdea53-db1a-4878-9464-d9712dd4fc5b",
+    "name": "Left Ear Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "78ab92f3-70ff-43e4-8c54-bab260ecab66",
+    "name": "Left Nipple Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2e5bcecb-9734-43b4-ba8f-dbbdcdc89e4b",
+    "name": "Legionella Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "af495148-a750-4279-a619-3ab809bd31e4",
+    "name": "Leishmania IgA",
+    "price": 21.75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e90ff1bb-e754-4f15-a795-1094faba33b4",
+    "name": "Leishmania IgG",
+    "price": 21.75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1fe24dd8-c28a-4f9e-8847-1410451ce539",
+    "name": "Leishmania IgM",
+    "price": 21.75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "39b93576-9d15-483a-beb1-133588b8dca3",
+    "name": "Leptin",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1691b9e9-dfe0-45f9-aa3a-b4f3b41be627",
+    "name": "Lipase",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "60e01512-04f7-4a0c-b07e-a4e32b04753f",
+    "name": "Lipids Profile",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "51a22052-b6e2-41f0-bc24-675fb48a2c4e",
+    "name": "Lipoprotein (a)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c73fc70a-62c8-401e-9b6e-1ef7f3ff9f4a",
+    "name": "Listeria Abs IgG",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0e7fb46d-a0d1-4b07-b45f-8fa7d021459e",
+    "name": "Listeria Abs IgM",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "abfebfa6-9f98-40b2-8bc6-58576c62f240",
+    "name": "Lithium",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "00806bf1-4a46-4af3-b862-137d56e767e9",
+    "name": "Liver Function test",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b529e146-fe15-4eca-807f-a59cea5ee067",
+    "name": "Liver Kidney Microsomal Antibodies",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "24687c06-f921-4241-89e6-cd5d10fd300e",
+    "name": "Lupus Anticoagulant",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "84dae5bc-2cf9-4e0b-ab4a-569262ba4f6b",
+    "name": "Lysozyme",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "df8fa90a-85a4-45b2-8366-bd7005959759",
+    "name": "Magnesium (Serum)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0b9f30c5-296e-4eb1-a952-d0f10383e521",
+    "name": "Magnesium Ionized",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "84850e1c-ac7b-435d-bdce-ab5460932c68",
+    "name": "Magnesium in Urine (24 hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e096c01d-c875-4b8a-9bb8-2ac68def4d0c",
+    "name": "Malaria Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0ae3de9b-26dc-4f84-a040-48836d47bc0b",
+    "name": "Malaria Smear",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "37962053-0c1a-4d51-bd54-aebebf6e9bc4",
+    "name": "Measles Abs IgG",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f4c1c6e8-b332-404e-a110-f2a5f2f4b625",
+    "name": "Measles Abs IgM",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "586bf609-7c82-4a5c-b68d-8df8ec8c387d",
+    "name": "Melatonin",
+    "price": 97.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dd57d1b3-30ec-4597-a120-cb79bd17b7f8",
+    "name": "Metanephrines in Plasma",
+    "price": 38,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0e1f1e8a-9493-4ca6-9799-19db9c511652",
+    "name": "Metanephrines in urine (24hrs)",
+    "price": 21,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d0f70ebc-fb6e-4ee9-aa69-caac06cca8dd",
+    "name": "Methotrexate Level",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "18179486-02e5-48c3-9498-57e70bf1e44a",
+    "name": "Methylenetetrahydrofolate Reductase (MTHFR) (Codon 1298)",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "26596028-7cf0-4f10-b93e-3c90ed6a4073",
+    "name": "Methylenetetrahydrofolate Reductase (MTHFR) (Codon 677)",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "96b36e57-c665-42f5-b2bf-5dd88c343fdc",
+    "name": "Microalbuminuria",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "54583170-6399-40cb-aa67-6d7e85b93ae7",
+    "name": "Monospot Test",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3361c6a0-d2a9-4a2f-b05c-7eb3fb19b487",
+    "name": "Mucopolysaccharides",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1debc0c2-07f8-4a22-a941-aadd10c7f656",
+    "name": "Mumps Abs IgG",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "669246c7-fa49-4baa-bcd0-29b7b7ab15bc",
+    "name": "Mumps Abs IgM",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "322ddca8-b6bf-410d-958e-d0eaadb25964",
+    "name": "Mycoplasma Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "35f79748-2811-4c7d-acf3-abe97ec39014",
+    "name": "Mycoplasma pneumoniae Abs IgM",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "39fef884-ee49-4977-9817-f8e87a20deef",
+    "name": "Myelin-Oligodendrocyte Glycoprotein IgG Abs (MOG IgG)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e79b5480-7b63-4462-8ded-6ee7bfc14749",
+    "name": "Myelin-Oligodendrocyte Glycoprotein IgG Abs (MOG IgM)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "27d75d13-4c3a-4877-9d2f-963b64477dc3",
+    "name": "Myoglobin",
+    "price": 17.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0c05a3b8-d1a3-49b6-a6ec-79be66cd2245",
+    "name": "Myoglobin-Urine",
+    "price": 20.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "42494788-fe23-4f6c-9a45-2c7db7799f0e",
+    "name": "NKA",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fbf242b-d5c7-47ec-9dd2-17071558074b",
+    "name": "NKA",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9527466f-89cc-444f-9c7e-351307ce1b57",
+    "name": "Neisseria gonorrhoeae",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dcc72fef-7862-4786-81b2-24701d7b33ec",
+    "name": "Neisseria meningitidis",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3304d848-0e09-4505-9fef-690a3ecc93ac",
+    "name": "Nicotine (Urine)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c1481c5b-8089-42b7-a52f-5236e00acc9b",
+    "name": "Nor-Metanephrines in Plasma",
+    "price": 38,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "587c83b7-4706-432e-aab2-9386aa166fb6",
+    "name": "Nor-Metanephrines in Plasma",
+    "price": 38,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3d1f2401-9476-4c40-8e05-2886e40023a3",
+    "name": "Noradrenaline",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "113627a1-fbcf-495e-8132-cd0e6d26e7b5",
+    "name": "Noradrenaline",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "124aa09a-cbf1-4d1a-8e59-90bbea4c75ac",
+    "name": "Normetanephrines 24hr Urine by LCMS",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "98dab814-4537-4a9e-81ed-cdd95a2e19fe",
+    "name": "Normetanephrines 24hr Urine by LCMS",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "96bfc59e-072d-4814-a8d6-ba54ada0be66",
+    "name": "Occult Blood in Stool",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a9652b59-1174-4e50-bcc0-9cdd4dc08863",
+    "name": "Occult Blood in Stool",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "69be563c-8a87-467d-aa37-55c28e6ac0c8",
+    "name": "Oligoclonal Banding",
+    "price": 63,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ec61a1d5-8f23-4dbd-a512-a763637fefc7",
+    "name": "Oligoclonal Banding",
+    "price": 63,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e7d2068c-f93c-4a9d-9bc1-829ded0ade39",
+    "name": "Osmolality urine",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c3721e35-7229-40b6-8cdc-257160af1e78",
+    "name": "Osmolality urine",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c7f0166b-2a89-4815-bf21-6753a7fcce5e",
+    "name": "Osteocalcin",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "08655a14-c37e-464b-aea2-72501d4a6dbd",
+    "name": "Osteocalcin",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fc766fa-9a3d-4d23-95bf-3939237e636a",
+    "name": "Oxalate in urine (24hrs)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0697aee5-3da7-48ed-95d1-903aea2ee9ab",
+    "name": "Oxalate in urine (24hrs)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "aeb64c60-7746-4ca7-8e2e-71092f73ad27",
+    "name": "Oxcarbazepin (Trileptal)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7964dde1-4257-4b00-968b-b84898e66325",
+    "name": "Oxcarbazepin (Trileptal)",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9f0aadb0-0bbc-4dfb-b54d-76fd330a6aab",
+    "name": "PAPP-A",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bcdbb86c-821d-48b0-9dc4-48c441fc01e8",
+    "name": "PAPP-A",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bd18046d-efd6-4a47-b6de-3b3c88a0b193",
+    "name": "PH",
+    "price": -0.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fad4c679-ac49-499b-802e-b548d53810a3",
+    "name": "PH",
+    "price": -0.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0c41810a-8cd9-437f-a511-db2e6b8b3f78",
+    "name": "PSA (Free)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1edf26a0-b38f-44ef-9bd1-8eca573feef2",
+    "name": "PSA (Free)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2f7e5714-3244-47cf-98e2-41a2096adc10",
+    "name": "PSA (Total)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c71b1b3c-c9a6-45e7-9f14-a585097e72f8",
+    "name": "PSA (Total)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b80e0641-cf73-4a7f-bb96-98caeb7f8273",
+    "name": "Pap Smear",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d1aa69cc-febe-432d-b50a-247565b89fd2",
+    "name": "Pap Smear",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "44d264fe-13ac-405b-bdad-1ca567835a36",
+    "name": "Parathyroid Hormone ( PTH )",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "57cd204d-fe1a-4e3a-9363-ad23eefda262",
+    "name": "Parathyroid Hormone ( PTH )",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "624e78b4-9728-4875-b705-2295da0fcf04",
+    "name": "Partial Thromboplastin Time (PTT)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5bde99c9-11ad-414a-afcc-79f47f9f530f",
+    "name": "Partial Thromboplastin Time (PTT)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "712c12d8-fa36-4d1e-a97e-9e722d01e2de",
+    "name": "Parvovirus Abs IgG",
+    "price": 42,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "47a1289e-2848-4d21-a632-dab3b75b6c53",
+    "name": "Parvovirus Abs IgG",
+    "price": 42,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d0995fda-7be4-4b2e-8a8e-a8537537e7ef",
+    "name": "Parvovirus Abs IgM",
+    "price": 42,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7309dc58-526b-4940-9127-d0c820eb71f6",
+    "name": "Parvovirus Abs IgM",
+    "price": 42,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ea633523-50a5-407f-8a4a-45eb2453b39b",
+    "name": "Pathology-Large",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d5e3de45-d31f-4de0-8804-58f4b293971e",
+    "name": "Pathology-Large",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "45583111-d217-4f00-86a6-e509f2eec119",
+    "name": "Pathology-Medium",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "482edbfd-68f3-409c-9e4f-27987742aace",
+    "name": "Pathology-Medium",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "14393976-83c1-4046-ac50-733e06a81070",
+    "name": "Phenobarbital (Luminal)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "815874cd-9747-4628-a8f1-cf97b52b090e",
+    "name": "Phenobarbital (Luminal)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "31db9bce-8d17-4164-9fdc-060ae7e06aa1",
+    "name": "Phenylalanine",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "24cef26f-a886-4aa1-8174-0455adad5be0",
+    "name": "Phenylalanine",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fbb52287-8fe5-4147-ab1e-b7509cf6a81e",
+    "name": "Phenytoin (Epanutin)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f89307d6-f970-4123-a4cd-c3c2a1e9799f",
+    "name": "Phenytoin (Epanutin)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d649b94a-67ad-4879-a247-37502780fbc0",
+    "name": "Philadelphia Chromosome - FISH",
+    "price": 150,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ddfbf17e-b083-4fb6-9162-6f8d51403bd9",
+    "name": "Philadelphia Chromosome - FISH",
+    "price": 150,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fa28e3ab-fc52-4de6-8d9f-d01083e271c9",
+    "name": "Phospholipase A2 Receptor Abs (Anti PLA2R) IgG",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "62677b10-3da0-4446-936d-4ac423554139",
+    "name": "Phospholipase A2 Receptor Abs (Anti PLA2R) IgG",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "794c3090-f57a-4c88-9c78-7af87b4d9e8e",
+    "name": "Phosphorus (Serum)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "04e4381e-e05e-420c-8e56-9c6fde08ddf9",
+    "name": "Phosphorus (Serum)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c120957c-668e-48ec-847c-f86e3fb48fed",
+    "name": "Phosphorus in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6149f051-9655-4acb-b612-d3a641a3bda0",
+    "name": "Phosphorus in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c35255ae-69ca-4db5-96e0-417a3327628d",
+    "name": "Pleural Fluid C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "318f08e7-aef9-44a5-bb76-8c11cf17881d",
+    "name": "Pleural Fluid C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5cd340d6-9100-44d2-abb5-f256fdc50635",
+    "name": "Poliovirus IgG Abs",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d3d624c6-c5c3-4012-9e26-05933a557fab",
+    "name": "Poliovirus IgG Abs",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9bf999f9-781c-4d07-a4df-022658ef4ca1",
+    "name": "Postprandial Blood Suger",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8e4a4cd9-a384-465b-8bf1-f6cc770b239d",
+    "name": "Postprandial Blood Suger",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1f0dd052-ca97-4087-8525-df6f6ee6f5c4",
+    "name": "Potassium Serum",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8b9583c0-981a-4a40-ba02-62646b416583",
+    "name": "Potassium Serum",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "69650e22-7b8f-4c29-bd08-26146bf58ef3",
+    "name": "Potassium Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dadb7ed8-ceb2-45ab-99f3-99bf08e49ce0",
+    "name": "Potassium Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "86f88a1c-545d-4588-8539-caed66875d10",
+    "name": "Potassium in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fedbe75-4d93-4b00-b354-d9d373e630c2",
+    "name": "Potassium in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f2cad3f1-b6da-4d90-a5ef-0e64741ebabd",
+    "name": "Pregnancy Test",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "78572bcb-2d7c-4399-ac4e-14f9f9ada689",
+    "name": "Pregnancy Test",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ddd1d314-f1ed-4091-a273-3109b71a45c9",
+    "name": "Pro-BNP(Pro B-type natriuretic peptide)",
+    "price": 35,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9cac65ac-c863-476d-bf39-cfb67b1acf08",
+    "name": "Pro-BNP(Pro B-type natriuretic peptide)",
+    "price": 35,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4cbc7b3d-726e-4851-809a-5f0b4f6fff7a",
+    "name": "Procalcitonin (PCT)",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "553d8bea-4a67-4dd8-9211-dee169265564",
+    "name": "Procalcitonin (PCT)",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "204cf2e5-f685-40eb-bae6-19295c34142c",
+    "name": "Progesterone",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fc161b06-22a7-4890-927f-3a3c6cce556d",
+    "name": "Progesterone",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a6304538-a51b-4d11-ab16-4c0dd8481357",
+    "name": "Prograf (Tacrolimus)",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d2ca8ced-a102-4224-95b9-f75c998a3ada",
+    "name": "Prograf (Tacrolimus)",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e9f4d216-6494-4aef-9bd4-5a3f8f89f58d",
+    "name": "Prolactin",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1f61ec45-97ca-4ae2-9265-eae79ca1ff37",
+    "name": "Prolactin",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "824d09d6-5fea-4bc7-9233-5a451c6dec9e",
+    "name": "Prostatic Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3cea6955-9233-4360-ab83-a572d612d956",
+    "name": "Prostatic Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c8a24177-c364-4b19-a0bd-792f1d5a40b7",
+    "name": "Protein C",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "013e02bc-a54d-46ac-83e1-3a197c374b00",
+    "name": "Protein C",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "aa309821-769f-4f7b-bff6-c62f084b44de",
+    "name": "Protein Electrophoresis",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2dbe4ae5-5d56-43a3-867f-950d7dca6c50",
+    "name": "Protein Electrophoresis",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fec50411-c19a-4707-8e68-5e262ccaf500",
+    "name": "Protein Electrophoresis",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dea6dac6-b1bc-4278-9057-1edc60d62132",
+    "name": "Protein Electrophoresis",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fd17b606-8682-4ced-882e-c181d9c6b884",
+    "name": "Protein Electrophoresis in Urine (24hrs)",
+    "price": 16,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3245fad7-22d8-4b7a-8d47-d2db53160bc1",
+    "name": "Protein Electrophoresis in Urine (24hrs)",
+    "price": 16,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2108e710-d485-4e3a-8dde-7efe2339e8fb",
+    "name": "Protein S Free",
+    "price": 16,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d943c014-6216-4f71-862c-2b67610734ed",
+    "name": "Protein S Free",
+    "price": 16,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f3bf4a2d-b654-44e1-9d19-7a470153d749",
+    "name": "Protein S Total",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7e95d99c-4801-4dc6-9ba2-1b176f7a1a59",
+    "name": "Protein S Total",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "aff1f3f2-3307-4714-84ff-815b0a042527",
+    "name": "Protein in Urine (24hrs)",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "40be3467-563d-4148-8af6-4a6d7b20d285",
+    "name": "Protein in Urine (24hrs)",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8b01e386-6932-4712-a5c2-0eac3c814d60",
+    "name": "Protein/Creatinine Ratio",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "70566fac-8db4-409b-9eea-ca0be1c5bdce",
+    "name": "Protein/Creatinine Ratio",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "465921c9-677f-4c8f-8fbd-657571a8da83",
+    "name": "Prothrombin Time (PT)/INR",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a2aa85a7-435d-45f9-89a6-d0bb6f58ccd0",
+    "name": "Prothrombin Time (PT)/INR",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4c0b54ac-42d7-4ba2-a20b-128f36320271",
+    "name": "Pus C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "74e4dc88-db95-4069-a50f-b7783a737aba",
+    "name": "Pus C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d930bce6-a72d-46c2-ab59-d63701a97ea4",
+    "name": "Pus Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "be62beb4-74bd-43c7-819b-8832356776dd",
+    "name": "Pus Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "46cf71c7-d269-462e-9052-3094f469ce4c",
+    "name": "Ramadan Offer- Lipid Profile",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8a90c6fa-264d-4844-8540-8df45cd83070",
+    "name": "Ramadan Offer- Lipid Profile",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e206f606-59a6-4820-9c47-08f47a0684c1",
+    "name": "Random Blood Suger",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e4d4f3f0-b668-4c8a-a092-9ba476438759",
+    "name": "Random Blood Suger",
+    "price": 1,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "eb3cd293-e92d-49ad-8831-8c1c33a3ce02",
+    "name": "Rapid plasma reagin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "89660816-06d1-49f3-8a37-1e0ec9aee6f4",
+    "name": "Rapid plasma reagin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1e3a9270-2846-477f-a7e3-6dd215c77556",
+    "name": "Reducing Substance in Stool",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "40d9ccd1-b495-458f-93bb-6a494032d416",
+    "name": "Reducing Substance in Stool",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2e1a1ced-567b-4bc0-b57a-5e0985bc8ae9",
+    "name": "Reducing Substance in Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5b444025-a6c9-4acd-adfc-0e8d88fc2539",
+    "name": "Reducing Substance in Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6efa3293-abe0-4f4e-ba69-86b8d37a578d",
+    "name": "Renin",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "25976829-19e8-43ac-bb38-de7f6b21ed66",
+    "name": "Renin",
+    "price": 25,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9b4f0e14-78b9-4f57-be36-d158cc848896",
+    "name": "Respiratory Syncytial Virus Ag (RSV Ag)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0de8e202-13e6-4a34-9ae3-a6b6b196990d",
+    "name": "Respiratory Syncytial Virus Ag (RSV Ag)",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f3ad09bd-84fe-47a2-94ad-7dc9e0953172",
+    "name": "Reticulocytic Count",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1164064e-09f1-4b87-bb71-9bff0a5d37c9",
+    "name": "Reticulocytic Count",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f7d4e8ce-5fb4-4316-b81a-7b55d26e7d04",
+    "name": "Rh antibody titre",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "227a2268-f2b6-4276-8b47-4b6de718c9a5",
+    "name": "Rh antibody titre",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8a25866a-d3c6-4309-b85d-e4a3032c9c83",
+    "name": "Rheumatoid Factor",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e6dc26c4-d7b9-4d04-a281-690ae6a8770f",
+    "name": "Rheumatoid Factor",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "975e83d1-78f5-43e9-b00b-9ae02a10a390",
+    "name": "Right Conjunctival Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d2faf57e-13c3-41f9-8bfa-00cff8ccab2a",
+    "name": "Right Conjunctival Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a52c3da1-677f-4281-82ea-33004353f20e",
+    "name": "Right Ear Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b8675b2b-f501-47a6-bff1-b111b75a54c3",
+    "name": "Right Ear Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "45327fe4-ee4e-4a7c-8218-ed37a1c93223",
+    "name": "Right Nipple Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8a21e35b-b4fd-4fe0-9283-5498b98e7172",
+    "name": "Right Nipple Discharge C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "70a22d65-9d25-48c6-920d-eedae52fdb5b",
+    "name": "Rubella IgG Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9fc740d1-8477-49b9-ae9a-b9f50bf68808",
+    "name": "Rubella IgG Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "170b2a8a-dd5d-4a6b-8ba6-3bf3acaf82b8",
+    "name": "Rubella IgM Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cc0efa5a-e048-4abf-9c44-6c57b60d3fbc",
+    "name": "Rubella IgM Abs",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3d4d475a-0d9d-4312-8266-2e9e5fd0aa8a",
+    "name": "S. pneumoniae Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5865d8f5-889c-48f4-9bbf-70b119d6cb71",
+    "name": "S. pneumoniae Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "77ba614f-6d82-456d-8f5c-3389a463ba4b",
+    "name": "SGOT (AST)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e0de007c-47d6-4b00-a6a1-2e1b050ad23d",
+    "name": "SGOT (AST)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "872dfdd9-f9eb-4504-9c8e-92e1a3c808ab",
+    "name": "SGPT (ALT)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "95d2f20b-a3d6-4db0-a106-889048e3e518",
+    "name": "SGPT (ALT)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fae653fa-1744-4bbf-bf26-2944b1d20b58",
+    "name": "Selenium",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "13dbaf75-ab08-4c46-a35d-a20cd97895f6",
+    "name": "Selenium",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6b1f0594-9652-4009-a5a7-b500c74dc8f9",
+    "name": "Semen C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "030fde87-9413-4fce-837d-25ed88544203",
+    "name": "Semen C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "173e44cc-8a30-47d9-b337-13ff49818ee9",
+    "name": "Semen Examination",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9239ac03-3948-4f34-909e-d3a7f8f1f91b",
+    "name": "Semen Examination",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cfed02ac-4b82-4873-a9dd-f5b0de001e23",
+    "name": "Semen Examination by CASA",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9e27b9d6-a179-43e2-be56-fea5f912fdac",
+    "name": "Semen Examination by CASA",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "496fbe6c-717e-4238-9019-a72c3504ca53",
+    "name": "Serotonin",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2f2ff6cb-7bfb-477f-9eb1-e5050ebc92ac",
+    "name": "Serotonin",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "22937a5f-661b-4eb5-95c3-fb3605fab10e",
+    "name": "Serum Osmolality",
+    "price": 12,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a76e4ada-ed45-4f80-9f1e-ceafa4531430",
+    "name": "Serum Osmolality",
+    "price": 12,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a9ce88ce-730f-4be8-a0a1-e6b5c07cecbc",
+    "name": "Sex Hormone Binding Globulin (SHBG)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b0beb2e1-9857-4c93-ab0e-d5235f864d03",
+    "name": "Sex Hormone Binding Globulin (SHBG)",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8e2e8476-b66f-45de-a0da-546e20f55ee3",
+    "name": "Sexual Transmitted Disease Profile-10",
+    "price": 82.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f44b977c-5d55-480f-b402-7dcbd8265151",
+    "name": "Sexual Transmitted Disease Profile-10",
+    "price": 82.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a631f08f-86d5-43e9-a070-33ea633dba07",
+    "name": "Shistosoma Abs (Bilharziasis)",
+    "price": 34,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6c765642-54d5-4a1f-bd1d-8a8d54358f6e",
+    "name": "Shistosoma Abs (Bilharziasis)",
+    "price": 34,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d134f32a-70fb-4c28-a6d8-85265559aa6c",
+    "name": "Sickle Cell Mutation by PCR",
+    "price": 105,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0be45bfd-11b9-47f9-b7aa-71eb394471ac",
+    "name": "Sickle Cell Mutation by PCR",
+    "price": 105,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "75027daf-ad83-4f3f-84f3-70b78c147591",
+    "name": "Sickling Test",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "98c01e2e-c59b-476d-92f3-1014271873f0",
+    "name": "Sickling Test",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e8c9edf0-7297-4f5d-a1da-ce175a2ee2ee",
+    "name": "Sodium Serum ",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8a40552f-53b0-4a77-bc4f-a2394a9e7cdc",
+    "name": "Sodium Serum ",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0c9a6e7f-b249-414c-b723-fe532bc2f16d",
+    "name": "Sodium Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d14759d4-64f0-432b-b418-c6c578591e59",
+    "name": "Sodium Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b1c319fb-ea68-4924-9258-9bb7a2225964",
+    "name": "Sodium in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c86d3390-c86b-4fb1-a77c-a43e2349959a",
+    "name": "Sodium in urine (24hrs)",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4223afc6-6c4e-425a-a464-b559937d9c69",
+    "name": "Soluble Liver Antigens Autoantibodies (SLA)",
+    "price": 28,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cb5e2e67-11f0-4ca1-959d-ebfd86112f8b",
+    "name": "Soluble Liver Antigens Autoantibodies (SLA)",
+    "price": 28,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fa87360-56a5-4cff-aa28-57ab610219bc",
+    "name": "Special Test",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fe811fb0-7111-47e9-ab6d-90a6f72acbd5",
+    "name": "Special Test",
+    "price": 75,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "885423f8-afb3-4b3a-9087-8b6d99946353",
+    "name": "Sperm DNA Fragmentation Test",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c793e4ff-b888-47de-8ef0-3c19ffa9e545",
+    "name": "Sperm DNA Fragmentation Test",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "093b082c-00b6-4231-8196-02e47880a3b1",
+    "name": "Sputum C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "da53ed97-4e9a-403a-998c-0bb86fd53ae8",
+    "name": "Sputum C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cdea2a89-255f-42b2-b49f-e9ea6aee15b0",
+    "name": "Stone Analysis",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b61db247-8074-4f62-ba6a-1c7a6d0be203",
+    "name": "Stone Analysis",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c4ee2e56-aaa3-4797-908c-11f9790f06b3",
+    "name": "Stool Analysis",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1e901eb8-56c3-4790-9f2d-fb209f40830c",
+    "name": "Stool Analysis",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8d05ffa1-6965-4a67-a8b3-8f6f1cbae1b5",
+    "name": "Stool C/S",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bc4ba8ec-2448-45dc-83d3-cec830d1d8f8",
+    "name": "Stool C/S",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4206a2fd-264c-4e13-8b7d-2ca33ab544cb",
+    "name": "Streptococcus pyogenes A",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "07df8803-6c6e-49b6-bda7-5043acdc5c2e",
+    "name": "Streptococcus pyogenes A",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a9e73e19-3be4-46a2-bc5a-15d023b93b0c",
+    "name": "Sudan III",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2e121c9a-28b0-4f20-9c14-e09a33c8b4f1",
+    "name": "Sudan III",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5849a834-f0d5-4bde-9d29-a9f51a4e8d1a",
+    "name": "Systemic Lupus Erythematosus (SLE) (LE Cells) - Latex",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1f2a2111-ecd6-4ae3-9888-2d67b62dad2f",
+    "name": "Systemic Lupus Erythematosus (SLE) (LE Cells) - Latex",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "63e43383-dccf-4aa6-9489-a10c2533d53a",
+    "name": "T3 (Free)",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90137077-3b70-4e41-97b7-6bc7a1a82068",
+    "name": "T3 (Free)",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5d4d2cdd-e2fd-46e7-ad21-e6f2f085dfb7",
+    "name": "T4 (Free)",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "335701fb-8be8-4300-b581-1c5b815a531f",
+    "name": "T4 (Free)",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d1d7a100-5fb1-48c2-adb1-3d68934bdfb3",
+    "name": "TORCH",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a0b0d213-7518-49f1-bb6d-0d77648904f4",
+    "name": "TORCH",
+    "price": 50,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d864ae8b-a04c-4b79-9124-66b13bb8c3f2",
+    "name": "TSH",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "59314e28-9404-4e42-a3cd-2f1298888f85",
+    "name": "TSH",
+    "price": 6,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3be55bec-18a7-4df1-8168-101af93e5816",
+    "name": "Testosterone (Free)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0cbd2319-7b5c-4f94-aeb4-905c791bda2f",
+    "name": "Testosterone (Free)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c8c32df4-21ac-43de-819a-5bfcc080abd4",
+    "name": "Testosterone (Total)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6473d4b9-da64-451e-aa76-c07f43570334",
+    "name": "Testosterone (Total)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bad3ba01-145e-4ee5-8893-8c5fe19ff2c0",
+    "name": "Tetanus Antitoxin",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d2200739-675d-4a73-9bb6-58457a4fcf34",
+    "name": "Tetanus Antitoxin",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0f133d74-630b-4ffe-bd67-23f53294db89",
+    "name": "Theophylline",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90c8e5b6-823e-4f76-a70f-db0dacef39a1",
+    "name": "Theophylline",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9b790a33-b664-47c8-9f51-b5c94cc82aec",
+    "name": "Throat Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "db3b0a2e-7322-43e4-bf49-38c2702daa20",
+    "name": "Throat Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e180c2d4-4579-44e5-ba12-a842a2e3aad0",
+    "name": "Thyroglobulin",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "99d4062c-d3a1-4886-a491-8f097fc050ef",
+    "name": "Thyroglobulin",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ff8190e1-b107-463f-89e4-1c143ecce050",
+    "name": "Thyroid Anti Microsomal Abs",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "73e39c76-cacd-4ae0-8d8d-75a1b09f9fef",
+    "name": "Thyroid Anti Microsomal Abs",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c22ade22-3703-46b5-9096-e6674760ab6b",
+    "name": "Tissue transglutaminase Abs IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "509b2bce-c329-4111-9743-eda14526b5b1",
+    "name": "Tissue transglutaminase Abs IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "90db9fa3-f395-4475-bc57-ced139972216",
+    "name": "Tissue transglutaminase Abs IgG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d0230bf2-ae65-408a-8d23-c52324e2dd84",
+    "name": "Tissue transglutaminase Abs IgG",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cd9d057d-d068-46a9-a509-e85b2b2c6c72",
+    "name": "Total Bile Acids",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0fe4fb61-1da8-4fbe-8f79-537890b076e6",
+    "name": "Total Bile Acids",
+    "price": 22.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c3bc165c-49e2-4776-8e18-367054787e75",
+    "name": "Total Iron binding capacity (TIBC)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2711f18d-8790-4b4f-8c7d-fbefd2b0cc57",
+    "name": "Total Iron binding capacity (TIBC)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cdb360fb-3e28-455e-9496-80550cc0dc35",
+    "name": "Total Protein",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d859e65f-a743-417b-9374-3ac81f0666eb",
+    "name": "Total Protein",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "71973d50-5b0e-4381-86e1-64633f5eee3a",
+    "name": "Total Protein Spot Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4eb8e60f-9a29-4eeb-a349-7a45708cce96",
+    "name": "Total Protein Spot Urine",
+    "price": 4,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9b4cb74e-c8af-4cb2-89b6-9f722c81c952",
+    "name": "Total T4 (TT4)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "032f52d6-8a76-41e9-b07c-32bd5ed4a59f",
+    "name": "Total T4 (TT4)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "92661c64-2402-4885-88f4-21559f73b3b4",
+    "name": "Toxoplasma Abs IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "af1ee4e7-deaa-44e6-9b4f-8dcbafa4f5d0",
+    "name": "Toxoplasma Abs IgG",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0bcc7f0c-54dc-4202-ab85-f3fc91fbf87a",
+    "name": "Toxoplasma Abs IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f619b090-cf38-4346-a41e-95f421bdc1fe",
+    "name": "Toxoplasma Abs IgM",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fcff6bc-c326-41b0-91d9-f2dbe48e6066",
+    "name": "Toxoplasma gondii by PCR",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9c97fd15-8e74-4795-8d84-078bf91d8632",
+    "name": "Toxoplasma gondii by PCR",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f91b4f90-17b6-4763-b693-7f39079516b2",
+    "name": "Transferrin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3bf95ee2-e4e2-4be7-9760-ebea223e69f0",
+    "name": "Transferrin",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6b12da34-4ccd-4acd-b328-cb8d16f06ddf",
+    "name": "Transferrin (Iron) Saturation",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "898ebb37-b924-427d-9d96-656842b8a6bd",
+    "name": "Transferrin (Iron) Saturation",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "87150d5d-f882-4eb4-bb2d-c130ba726ce5",
+    "name": "Treponema Pallidum Total Abs (TPHA) (Syphilis)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5451b72c-6737-4f0a-8e78-68c68809b5d1",
+    "name": "Treponema Pallidum Total Abs (TPHA) (Syphilis)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "67a00227-4f2a-47f4-bb80-20c1366af40a",
+    "name": "Trichomonas Vaginalis",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "30edb481-dd94-4f55-ab4d-2e51053bd410",
+    "name": "Trichomonas Vaginalis",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fdaf638e-36c6-4fb0-84e8-9443cc16522d",
+    "name": "Triglycerides",
+    "price": 2,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "250c4e96-6117-4d24-b2a4-a92e3a1c886f",
+    "name": "Triglycerides",
+    "price": 2,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ace9bc72-f795-487d-8e57-eb9a71180062",
+    "name": "Triiodothyronine - Total (TT3)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "494afb63-25fc-473c-83c7-909835c860c0",
+    "name": "Triiodothyronine - Total (TT3)",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f72c119a-2196-461d-b15c-bfc6942d157c",
+    "name": "Triple Test",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e1da8621-c0ba-4d09-bf32-ee584872c9a8",
+    "name": "Triple Test",
+    "price": 30,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f7cd8aee-8b31-4a1a-9c20-e73300f8041b",
+    "name": "Troponin - I",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "816db1a0-e1ee-4020-888d-6135fbf5425b",
+    "name": "Troponin - I",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6c747033-43aa-414d-92ae-61e8b85664df",
+    "name": "Troponin - T",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "20d16166-566b-4649-bd32-c74797925df6",
+    "name": "Troponin - T",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "323251a5-554d-4b29-8121-82c0644f7b8d",
+    "name": "Tuberculosis (T.B) Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "6a37fbb3-f938-46e3-a7cc-677c88f456e2",
+    "name": "Tuberculosis (T.B) Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8420bcbb-c976-4b05-993a-2cc698d3107a",
+    "name": "Tyrosin Phosphatase IA2-ICA512 Abs",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d2d842e5-9525-47be-abbf-ec654ccb9860",
+    "name": "Tyrosin Phosphatase IA2-ICA512 Abs",
+    "price": 37.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7a331c57-f254-43c2-972c-37eea5119bc6",
+    "name": "Unsaturated Iron Binding Capacity (UIBC)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "79e0771d-715c-4842-a414-bab1fdc531fb",
+    "name": "Unsaturated Iron Binding Capacity (UIBC)",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f0cb9a1c-2602-4f3e-a98b-68b0facfdc30",
+    "name": "Urea",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f8ced976-3830-421b-a572-091bcf45cfdd",
+    "name": "Urea",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e76aa9a0-aeeb-4310-b216-fc0c197ecea4",
+    "name": "Uric Acid",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5b784a3b-33b5-4bb3-b64e-fdfdcafe6650",
+    "name": "Uric Acid",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "945886ce-368d-470c-94f2-c7fdd26d739a",
+    "name": "Uric Acid Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c4ea1d45-b716-4ba4-9f5a-598180b1f112",
+    "name": "Uric Acid Spot Urine",
+    "price": 2.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5ee6d422-6033-42fa-8fb6-82e7dad31d46",
+    "name": "Urine Analysis",
+    "price": 1.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4490eeec-d117-4dff-8e4c-427a55c0f48e",
+    "name": "Urine Analysis",
+    "price": 1.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4f4d7ecc-1245-4c28-a07b-2b124e6437f1",
+    "name": "Urine C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "bde4c971-82c4-4d6a-bf7b-0287661cc225",
+    "name": "Urine C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "cbcb86a1-7687-4658-b0ed-c91b35e5d850",
+    "name": "Vaginal Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "daa9089a-a75f-4191-99d5-866795b99068",
+    "name": "Vaginal Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "7b3dd043-6c24-4af9-9e9c-0834c01c0f52",
+    "name": "Vancomycin",
+    "price": 21,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2fa497b1-e40e-4fc9-9894-8bec07336de8",
+    "name": "Vancomycin",
+    "price": 21,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b09f7d80-7237-4359-a87b-3829e677c572",
+    "name": "Varicella Zoster IgG",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3f1aef9d-4f41-49e6-af45-1588abc91c9f",
+    "name": "Varicella Zoster IgG",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f4165821-f6dc-4311-ba6c-abdfbe3d1cae",
+    "name": "Varicella Zoster IgM",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d9f94b8f-cc8a-42ef-a473-a64baa8b5036",
+    "name": "Varicella Zoster IgM",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c8de7a6a-b963-4d1f-b948-7805e19e92df",
+    "name": "Venereal Disease Research laboratory (VDRL) (Syphilis)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b5003a6f-c735-46f0-ae0b-c60e86ca9f82",
+    "name": "Venereal Disease Research laboratory (VDRL) (Syphilis)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ee7aeb2e-02cb-40a3-8b48-9db70aff34cf",
+    "name": "Vibrio Cholera Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "abf366b8-e722-4f78-ba81-955da8d41a69",
+    "name": "Vibrio Cholera Ag",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fbc4a49d-bb2e-4c39-bffa-9c18f5bc6884",
+    "name": "Vitamin A",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "004b0d67-3711-4cd7-8b78-4bce456573ca",
+    "name": "Vitamin A",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "375b1d25-fbce-4fc0-8834-dd2735963ff3",
+    "name": "Vitamin B1",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a600de66-dc25-45df-b4cd-03cede1b1e0c",
+    "name": "Vitamin B1",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "839e153c-b577-4824-81c5-64c4f946a35f",
+    "name": "Vitamin B12 Active - Holotranscobalamines",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "824e3711-3d5b-43f2-a860-ceef412e64bf",
+    "name": "Vitamin B12 Active - Holotranscobalamines",
+    "price": 9,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "99fa5664-064c-4e42-9cf9-f67c9436f78f",
+    "name": "Vitamin B2",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b55bec01-76ef-4348-82fb-da577ecaa3a6",
+    "name": "Vitamin B2",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3a784764-ba38-433d-a78a-b604e9b793b9",
+    "name": "Vitamin B6",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e8729218-566e-4286-a663-27397c3e18fb",
+    "name": "Vitamin B6",
+    "price": 60,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c0e79be4-feb1-45cb-ac33-3f0169ad5845",
+    "name": "Vitamin B7 (Biotin)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5a2aca87-f56e-4c2f-8332-9903c64b0d03",
+    "name": "Vitamin B7 (Biotin)",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "91ae7816-6793-4b84-bab0-310073b00c92",
+    "name": "Vitamin C",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5df1dd82-433f-4bfe-8766-117c300bd440",
+    "name": "Vitamin C",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "dc75c50a-049f-41ae-b180-5cc65643b2c5",
+    "name": "Vitamin D (25-OH Vitamin D total)",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9f33ffe0-b1ed-4919-9228-fa54a8018670",
+    "name": "Vitamin D (25-OH Vitamin D total)",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fbddb25a-c08f-4e09-84a2-5ea787074c72",
+    "name": "Vitamin E",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "73bcf187-1142-4c09-a3da-3d6506c127f6",
+    "name": "Vitamin E",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2f62f408-759d-4891-8b89-7eaa5e3fff21",
+    "name": "Vitamin E",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "afb84830-b555-46cd-bd73-6b497e545cf6",
+    "name": "Vitamin E",
+    "price": 45,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "1977afc9-7826-4858-b0ca-65471f04c9c9",
+    "name": "Vitamin K1",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c64ec004-1cd0-4ff8-8ff6-90700dadf319",
+    "name": "Vitamin K1",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "3c70a00c-aa66-4120-8ba4-403208f40d2b",
+    "name": "Vitamin K2",
+    "price": 97.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "c0bc8fd7-7804-4f65-bea9-bf678f5b08a8",
+    "name": "Vitamin K2",
+    "price": 97.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "e5c35e2f-96a3-43e7-a25f-16fc11b5941f",
+    "name": "Whole Exome Sequencing (WES)",
+    "price": 360,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ac83a755-0bc9-42c2-be54-cbccf5c6a4ba",
+    "name": "Whole Exome Sequencing (WES)",
+    "price": 360,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4be03229-7de2-4acc-862c-8a6222e227d9",
+    "name": "Whole Genome Sequencing (WGS)",
+    "price": 850,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4fff4ba0-ddbb-4cb9-b6e5-b418628af372",
+    "name": "Whole Genome Sequencing (WGS)",
+    "price": 850,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "b5afb38c-b599-40b7-8fe6-9d3d65f2a930",
+    "name": "Widal Test",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9b403a66-d4be-415b-be16-c3ea74890d7d",
+    "name": "Widal Test",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "324b9e01-6271-440c-99d8-555a2e35c6dc",
+    "name": "Wound Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "a71a2a0f-5f37-442e-9d36-80ea7090a92c",
+    "name": "Wound Swab C/S",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "5cedad78-6e7c-4d48-acca-4cd270e3fe9b",
+    "name": "Y Chromosome Microdeletions",
+    "price": 80,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "66e7f245-5242-4f26-b6f8-47ca50ef3ee3",
+    "name": "Y Chromosome Microdeletions",
+    "price": 80,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "40ddb349-22f6-4749-8ffe-bccfc66242e3",
+    "name": "Ziehl Neelsen Stain",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "2618ada7-077e-489a-85f0-55de4d2ca41c",
+    "name": "Ziehl Neelsen Stain",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "850a8199-c7a0-4e06-b771-fefaa1a4b7e5",
+    "name": "Zinc",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d97b4683-5958-4116-9652-41ba5d0cf4b0",
+    "name": "Zinc",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "0ac1179a-e25f-4369-b327-43142b1a20df",
+    "name": "Zinc Transporter - 8 Antibodies",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "887a39e7-7f99-4708-9ae5-a4484bcfd7af",
+    "name": "Zinc Transporter - 8 Antibodies",
+    "price": 52.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "487ab065-034e-4710-94ba-c5aeb8eb9d75",
+    "name": "b2 glycoprotein IgG",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "ee6882cf-8144-4ae1-bc0c-dff940bbaead",
+    "name": "b2 glycoprotein IgM",
+    "price": 15,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fce83b57-4f89-433a-8df6-acd38ee7c2c4",
+    "name": "ds-DNA (Anti DNA Abs)",
+    "price": 7.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d7839036-ec0e-423a-b8b0-5f595426b069",
+    "name": "hs-CRP",
+    "price": 10,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "9037a0cf-b54a-45ad-a581-8ea618af58fd",
+    "name": "pH in stool",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "fbc9224b-c97d-41c8-b2f9-41040784205e",
+    "name": "pH in stool",
+    "price": 5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "f1fc9237-bb0d-424c-8685-fa610cf4f8a7",
+    "name": "von Willebrand factor",
+    "price": 39,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "4ebaacba-c137-4ce3-a79a-c77a250e95f7",
+    "name": "von Willebrand factor",
+    "price": 39,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "d059151c-743e-458e-a005-d26ab1a4856a",
+    "name": "البكج الشامل ",
+    "price": 35,
+    "notes": "صيام 10 الى 12 ساعة ",
+    "requiresFasting": false
+  },
+  {
+    "id": "d420a2de-d3c5-4171-9c6d-5537a62ce5b0",
+    "name": "﻿Chlamydia trachomatis Abs IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  },
+  {
+    "id": "8c538b61-878d-4e27-96d8-54a9675dc5d1",
+    "name": "﻿Chlamydia trachomatis Abs IgA",
+    "price": 12.5,
+    "notes": "",
+    "requiresFasting": false
+  }
+]

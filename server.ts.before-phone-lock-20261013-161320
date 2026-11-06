@@ -1,0 +1,2181 @@
+import 'dotenv/config';
+import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import callLogsRoutes from './server/routes/calllogs';
+import { createServer as createViteServer } from 'vite';
+import { db, pool } from './src/db';
+import { appointments, users, systemSettings, examinations, regionConfigs, ratings } from './src/db/schema';
+import { eq, desc, sql, and } from 'drizzle-orm';
+import { AppointmentDataService } from './src/backend/services/appointment.service';
+import http from 'http';
+import { Server } from 'socket.io';
+import fs from 'fs';
+import crypto from 'crypto';
+import multer from 'multer';
+import { Request } from 'express';
+
+
+const appointmentService = new AppointmentDataService();
+const BACKUP_FILE = path.join(process.cwd(), 'config_keys_v1.json');
+
+const uploadStorage = multer.diskStorage({
+  destination: (_req, _file, cb) => {
+    cb(null, path.join(process.cwd(), "public/uploads/external-requests"));
+  },
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + "-" + crypto.randomUUID() + ext);
+  }
+});
+
+const upload = multer({
+  storage: uploadStorage,
+  limits: {
+    fileSize: 10 * 1024 * 1024
+  }
+});
+
+
+
+const DEFAULT_KEYS = {
+  GOOGLE_MAPS_API_KEY: '',
+  WHATSAPP_API_URL: '',
+  WHATSAPP_API_KEY: '',
+  WHATSAPP_API_TEMPLATE: 'مرحباً {اسم_المريض}،\nنود إعلامك بأنه تم تثبيت موعدك بنجاح لدى مختبرات العربي الطبية.\n📅 التاريخ: {تاريخ_الموعد}\n🕒 الوقت: بين الساعة {وقت_الموعد}\n📍 المنطقة: {اسم_المنطقة}\n🧪 الفحوصات: {قائمة_الفحوصات}\n💰 إجمالي المبلغ: {إجمالي_السعر} دينار أردني.\n\nنشكركم على ثقتكم، ونتطلع لخدمتكم. مع تمنياتنا لكم بدوام الصحة والعافية. 🌿',
+  WHATSAPP_COMPLETED_TEMPLATE: 'مرحباً {اسم_المريض}،\nتم الانتهاء من الموعد بنجاح. نتمنى لكم دوام الصحة والعافية.',
+  WHATSAPP_CANCELED_TEMPLATE: 'مرحباً {اسم_المريض}،\nتم إلغاء موعدكم للسبب التالي: {سبب_الإلغاء}.',
+  version: 'v1.0.0'
+};
+
+async function getStoredKeys() {
+  try {
+    const records = await db.select().from(systemSettings).where(eq(systemSettings.key, 'keys'));
+    if (records.length > 0 && records[0].value) {
+      const keys = JSON.parse(records[0].value);
+      try {
+        const currentData = fs.existsSync(BACKUP_FILE) ? fs.readFileSync(BACKUP_FILE, 'utf-8') : null;
+        const newData = JSON.stringify(keys, null, 2);
+        if (currentData !== newData) {
+          fs.writeFileSync(BACKUP_FILE, newData, 'utf-8');
+        }
+      } catch (fileErr) {
+        // Noisy logs removed
+      }
+      return keys;
+    }
+  } catch (error) {
+    console.log('[SystemSettings] Using fallback keys backup file');
+  }
+
+  // Fallback to local backup file
+  try {
+    if (fs.existsSync(BACKUP_FILE)) {
+      const fileData = fs.readFileSync(BACKUP_FILE, 'utf-8');
+      if (fileData) {
+        return JSON.parse(fileData);
+      }
+    }
+  } catch (fileErr) {
+    // Noisy logs removed
+  }
+
+  return { ...DEFAULT_KEYS };
+}
+
+async function saveStoredKeys(newKeys: any) {
+  const dataToSave = {
+    GOOGLE_MAPS_API_KEY: newKeys.GOOGLE_MAPS_API_KEY || '',
+    WHATSAPP_API_URL: newKeys.WHATSAPP_API_URL || '',
+    WHATSAPP_API_KEY: newKeys.WHATSAPP_API_KEY || '',
+    WHATSAPP_API_TEMPLATE: newKeys.WHATSAPP_API_TEMPLATE || DEFAULT_KEYS.WHATSAPP_API_TEMPLATE,
+    WHATSAPP_COMPLETED_TEMPLATE: newKeys.WHATSAPP_COMPLETED_TEMPLATE || DEFAULT_KEYS.WHATSAPP_COMPLETED_TEMPLATE,
+    WHATSAPP_CANCELED_TEMPLATE: newKeys.WHATSAPP_CANCELED_TEMPLATE || DEFAULT_KEYS.WHATSAPP_CANCELED_TEMPLATE,
+    version: newKeys.version || 'v1.0.0',
+    updatedAt: new Date().toISOString()
+  };
+  
+  // 1. Save to local JSON file
+  try {
+    fs.writeFileSync(BACKUP_FILE, JSON.stringify(dataToSave, null, 2), 'utf-8');
+  } catch (fileErr) {
+    // Noisy logs removed
+  }
+
+  // 2. Save to mariadb
+  try {
+    await db.insert(systemSettings)
+      .values({ key: 'keys', value: JSON.stringify(dataToSave) } as any)
+      .onDuplicateKeyUpdate({ set: { value: JSON.stringify(dataToSave), updatedAt: new Date() } });
+  } catch (err) {
+    console.log('[SystemSettings] Saved keys to local fallback only');
+  }
+  return dataToSave;
+}
+
+const APPEARANCE_BACKUP_FILE = path.join(process.cwd(), 'config_appearance_v1.json');
+
+const DEFAULT_APPEARANCE = {
+  SYSTEM_NAME: 'HealthLIS',
+  SYSTEM_LOGO_EMOJI: '🧪',
+  SYSTEM_LOGO_URL: '',
+  SYSTEM_ACCENT: 'indigo',
+  SYSTEM_ROUNDED: 'normal',
+  SYSTEM_SIDEBAR_THEME: 'light',
+  SYSTEM_COMPACT_MODE: 'false'
+};
+
+function handleBase64Logo(logoUrl: string): string {
+  if (logoUrl && logoUrl.startsWith('data:image/')) {
+    try {
+      const matches = logoUrl.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+      if (matches && matches.length === 3) {
+        const base64Data = matches[2];
+        const buffer = Buffer.from(base64Data, 'base64');
+        const logoPath = path.join(process.cwd(), 'logo.png');
+        fs.writeFileSync(logoPath, buffer);
+        console.log('[LOGO-SAVER] Saved uploaded logo base64 to logo.png inside project files!');
+        return '/logo.png';
+      }
+    } catch (err) {
+      console.warn('[LOGO-SAVER] Failed to save uploaded logo base64:', err);
+    }
+  }
+  return logoUrl;
+}
+
+async function getStoredAppearance() {
+  try {
+    const records = await db.select().from(systemSettings).where(eq(systemSettings.key, 'appearance'));
+    if (records.length > 0 && records[0].value) {
+      const appearance = JSON.parse(records[0].value);
+      try {
+        const currentData = fs.existsSync(APPEARANCE_BACKUP_FILE) ? fs.readFileSync(APPEARANCE_BACKUP_FILE, 'utf-8') : null;
+        const newData = JSON.stringify(appearance, null, 2);
+        if (currentData !== newData) {
+          fs.writeFileSync(APPEARANCE_BACKUP_FILE, newData, 'utf-8');
+        }
+      } catch (fileErr) {
+        // Noisy logs removed
+      }
+      return appearance;
+    }
+  } catch (error) {
+    console.log('[AppearanceSettings] Using fallback appearance backup file');
+  }
+
+  // Fallback to local backup file
+  try {
+    if (fs.existsSync(APPEARANCE_BACKUP_FILE)) {
+      const fileData = fs.readFileSync(APPEARANCE_BACKUP_FILE, 'utf-8');
+      if (fileData) {
+        return JSON.parse(fileData);
+      }
+    }
+  } catch (fileErr) {
+    // Noisy logs removed
+  }
+
+  return { ...DEFAULT_APPEARANCE };
+}
+
+async function saveStoredAppearance(newAppearance: any) {
+  const finalLogoUrl = handleBase64Logo(newAppearance.SYSTEM_LOGO_URL || '');
+
+  const dataToSave = {
+    SYSTEM_NAME: newAppearance.SYSTEM_NAME || 'HealthLIS',
+    SYSTEM_LOGO_EMOJI: newAppearance.SYSTEM_LOGO_EMOJI || '🧪',
+    SYSTEM_LOGO_URL: finalLogoUrl,
+    SYSTEM_ACCENT: newAppearance.SYSTEM_ACCENT || 'indigo',
+    SYSTEM_ROUNDED: newAppearance.SYSTEM_ROUNDED || 'normal',
+    SYSTEM_SIDEBAR_THEME: newAppearance.SYSTEM_SIDEBAR_THEME || 'light',
+    SYSTEM_COMPACT_MODE: newAppearance.SYSTEM_COMPACT_MODE || 'false',
+    updatedAt: new Date().toISOString()
+  };
+
+  // 1. Save to local JSON file
+  try {
+    fs.writeFileSync(APPEARANCE_BACKUP_FILE, JSON.stringify(dataToSave, null, 2), 'utf-8');
+  } catch (fileErr) {
+    // Noisy logs removed
+  }
+
+  // 2. Save to mariadb
+  try {
+    await db.insert(systemSettings)
+      .values({ key: 'appearance', value: JSON.stringify(dataToSave) } as any)
+      .onDuplicateKeyUpdate({ set: { value: JSON.stringify(dataToSave), updatedAt: new Date() } });
+  } catch (err) {
+    console.log('[AppearanceSettings] Saved appearance to local fallback only');
+  }
+
+  return dataToSave;
+}
+
+
+
+// Helper to check if an appointment time is within the user's notification window
+async function shouldNotifyTester(testerName: string, appointmentTime: string, appointmentDate?: string) {
+  try {
+    // 1. Check if the appointment date is today
+    if (appointmentDate) {
+      // Normalize to 'YYYY-MM-DD'
+      const todayStr = new Intl.DateTimeFormat('en-CA', { 
+        timeZone: 'Asia/Amman', 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit' 
+      }).format(new Date());
+      
+      if (appointmentDate !== todayStr) {
+        return false; // Don't notify if the date is not today
+      }
+    }
+
+    const [user] = await db.select().from(users).where(eq(users.name, testerName));
+    if (!user) return true; // Default to true if user not found (or handle differently)
+    
+    // If no notification hours set, notify always
+    if (!user.notificationStart || !user.notificationEnd) return true;
+    
+    // Appointment time could be "HH:MM" or "HH:MM - HH:MM"
+    const apptTime = appointmentTime || "";
+    if (!apptTime) return true;
+    
+    // Extract the first time block if there is a range
+    const firstTimeBlock = apptTime.split('-')[0].trim();
+    
+    // Convert to simple numbers for comparison (e.g. "08:30" -> 8.5)
+    const parseTime = (tStr: string) => {
+      const [h, m] = tStr.split(':').map(Number);
+      return (h || 0) + (m || 0) / 60;
+    };
+    
+    let aTime = parseTime(firstTimeBlock);
+    
+    // Handling AM/PM if it's in the string
+    if (firstTimeBlock.toLowerCase().includes('pm')) {
+      const parts = firstTimeBlock.replace(/[^0-9:]/gi, '').split(':');
+      let h = Number(parts[0]);
+      if (h < 12) h += 12;
+      aTime = h + (Number(parts[1] || 0) / 60);
+    } else if (firstTimeBlock.toLowerCase().includes('am')) {
+      const parts = firstTimeBlock.replace(/[^0-9:]/gi, '').split(':');
+      let h = Number(parts[0]);
+      if (h === 12) h = 0;
+      aTime = h + (Number(parts[1] || 0) / 60);
+    }
+    
+    const start = parseTime(user.notificationStart);
+    const end = parseTime(user.notificationEnd);
+    
+    // if start < end (e.g. 08:00 to 16:00)
+    if (start <= end) {
+      return aTime >= start && aTime <= end;
+    } else {
+      // overnight (e.g. 22:00 to 06:00)
+      return aTime >= start || aTime <= end;
+    }
+  } catch (e) {
+    console.error('Error checking notification window:', e);
+    return true; // Fallback
+  }
+}
+
+async function startServer() {
+  const app = express();
+
+  app.use(
+    '/uploads',
+    express.static(path.join(process.cwd(), 'public/uploads'))
+  );
+  const server = http.createServer(app);
+  const io = new Server(server, {
+    cors: { origin: '*' }
+  });
+  const PORT = Number(process.env.PORT) || 2468;
+
+  app.use(cors());
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+
+
+  // === Protected n8n integration: read-only regions ===
+  app.get('/api/integrations/n8n/regions', async (req, res) => {
+    res.setHeader('Cache-Control', 'no-store');
+
+    const expectedKey = process.env.MANZILE_N8N_API_KEY || '';
+    const suppliedKey = req.get('x-api-key') || '';
+
+    if (!expectedKey || !suppliedKey) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const expected = Buffer.from(expectedKey, 'utf8');
+    const supplied = Buffer.from(suppliedKey, 'utf8');
+
+    if (
+      expected.length !== supplied.length ||
+      !crypto.timingSafeEqual(expected, supplied)
+    ) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    try {
+      const rows = await db.select({
+        id: regionConfigs.id,
+        governorate: regionConfigs.governorate,
+        shift: regionConfigs.shift,
+        regionName: regionConfigs.regionName,
+        timeFrom: regionConfigs.timeFrom,
+        timeTo: regionConfigs.timeTo,
+        fridayTimeFrom: regionConfigs.fridayTimeFrom,
+        fridayTimeTo: regionConfigs.fridayTimeTo,
+        ammanSector: regionConfigs.ammanSector,
+      }).from(regionConfigs);
+
+      return res.json({ success: true, regions: rows });
+    } catch (error) {
+      console.error('[n8n regions] Failed to load regions');
+      return res.status(500).json({ error: 'Failed to load regions' });
+    }
+  });
+
+
+  // === Protected n8n availability check (read-only) ===
+  app.post('/api/integrations/n8n/check-availability', async (req, res) => {
+    res.setHeader('Cache-Control', 'no-store');
+
+    const expectedKey = process.env.MANZILE_N8N_API_KEY || '';
+    const suppliedKey = req.get('x-api-key') || '';
+
+    if (!expectedKey || !suppliedKey) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
+    }
+
+    const expected = Buffer.from(expectedKey, 'utf8');
+    const supplied = Buffer.from(suppliedKey, 'utf8');
+
+    if (
+      expected.length !== supplied.length ||
+      !crypto.timingSafeEqual(expected, supplied)
+    ) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
+    }
+
+    try {
+      const regionId = Number(req.body?.regionId);
+      const date = typeof req.body?.date === 'string' ? req.body.date : '';
+
+      if (!Number.isSafeInteger(regionId) || regionId <= 0) {
+        return res.status(400).json({
+          success: false,
+          error: 'INVALID_REGION_ID',
+          message: 'رقم المنطقة غير صالح.'
+        });
+      }
+
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return res.status(400).json({
+          success: false,
+          error: 'INVALID_DATE',
+          message: 'أرسل التاريخ بالصيغة YYYY-MM-DD.'
+        });
+      }
+
+      const parsedDate = new Date(`${date}T12:00:00Z`);
+      if (
+        Number.isNaN(parsedDate.getTime()) ||
+        parsedDate.toISOString().slice(0, 10) !== date
+      ) {
+        return res.status(400).json({
+          success: false,
+          error: 'INVALID_DATE',
+          message: 'التاريخ المرسل غير صحيح.'
+        });
+      }
+
+      const today = new Date();
+      const todayUtc = Date.UTC(
+        today.getUTCFullYear(),
+        today.getUTCMonth(),
+        today.getUTCDate()
+      );
+      if (parsedDate.getTime() < todayUtc) {
+        return res.status(400).json({
+          success: false,
+          error: 'PAST_DATE',
+          message: 'لا يمكن فحص توفر موعد بتاريخ سابق.'
+        });
+      }
+
+      const [region] = await db.select({
+        id: regionConfigs.id,
+        governorate: regionConfigs.governorate,
+        shift: regionConfigs.shift,
+        regionName: regionConfigs.regionName,
+        timeFrom: regionConfigs.timeFrom,
+        timeTo: regionConfigs.timeTo,
+        fridayTimeFrom: regionConfigs.fridayTimeFrom,
+        fridayTimeTo: regionConfigs.fridayTimeTo,
+        ammanSector: regionConfigs.ammanSector
+      })
+        .from(regionConfigs)
+        .where(eq(regionConfigs.id, regionId))
+        .limit(1);
+
+      if (!region) {
+        return res.status(404).json({
+          success: false,
+          error: 'REGION_NOT_FOUND',
+          message: 'المنطقة غير موجودة في النظام.'
+        });
+      }
+
+      const testers = await db.select({
+        id: users.id,
+        name: users.name,
+        governorate: users.governorate,
+        shift: users.shift,
+        ammanSector: users.ammanSector,
+        dailyLimit: users.dailyLimit
+      })
+        .from(users)
+        .where(and(
+          eq(users.role, 'ساحب منزلي'),
+          sql`(${users.status} IS NULL OR ${users.status} <> 'غير نشط')`,
+          sql`(${users.governorate} = ${region.governorate} OR ${users.governorate} = 'كل المحافظات')`,
+          sql`(${users.shift} = ${region.shift} OR ${users.shift} = 'كلاهما')`,
+          region.governorate === 'عمان'
+            ? sql`(${users.ammanSector} = ${region.ammanSector} OR ${users.ammanSector} = 'كلاهما')`
+            : sql`1 = 1`
+        ));
+
+      const appointmentsForDate = await db.select({
+        testerName: appointments.testerName,
+        status: appointments.status
+      })
+        .from(appointments)
+        .where(eq(appointments.date, date));
+
+      const available = testers.filter(t => {
+        const limit = t.dailyLimit && t.dailyLimit > 0 ? t.dailyLimit : 1000;
+        const count = appointmentsForDate.filter(a =>
+          a.testerName === t.name && a.status !== 'ملغي'
+        ).length;
+        return count < limit;
+      });
+
+      const isFriday = parsedDate.getUTCDay() === 5;
+      const from = isFriday
+        ? (region.fridayTimeFrom || region.timeFrom || '08:00')
+        : region.timeFrom;
+      const to = isFriday
+        ? (region.fridayTimeTo || region.timeTo || '12:00')
+        : region.timeTo;
+
+      const formatArabicTime = (value: string) => {
+        const [hText, mText = '00'] = value.split(':');
+        const h = Number(hText);
+        if (!Number.isFinite(h) || h < 0 || h > 23) return value;
+        const period = h >= 12 ? 'م' : 'ص';
+        const h12 = h % 12 || 12;
+        return `${h12}${mText !== '00' ? `:${mText}` : ''} ${period}`;
+      };
+
+      return res.json({
+        success: true,
+        available: available.length > 0,
+        region: {
+          id: region.id,
+          governorate: region.governorate,
+          shift: region.shift,
+          name: region.regionName
+        },
+        date,
+        isFriday,
+        timeWindow: `من الساعة ${formatArabicTime(from)} لغاية الساعة ${formatArabicTime(to)}`,
+        eligibleTestersCount: testers.length,
+        availableTestersCount: available.length,
+        message: available.length > 0
+          ? 'يوجد ساحب مؤهل لديه سعة متاحة. هذا فحص توفر فقط وليس تأكيد حجز.'
+          : 'لا يوجد ساحب مؤهل لديه سعة متاحة في هذه المنطقة والتاريخ.'
+      });
+    } catch (error) {
+      console.error('[n8n availability] Failed to check availability');
+      return res.status(500).json({
+        success: false,
+        error: 'AVAILABILITY_CHECK_FAILED',
+        message: 'تعذر فحص التوفر حاليًا.'
+      });
+    }
+  });
+
+  // === Protected n8n booking endpoint ===
+  app.post('/api/integrations/n8n/bookings', async (req, res) => {
+    res.setHeader('Cache-Control', 'no-store');
+
+    const expectedKey = process.env.MANZILE_N8N_API_KEY || '';
+    const suppliedKey = req.get('x-api-key') || '';
+    const expected = Buffer.from(expectedKey, 'utf8');
+    const supplied = Buffer.from(suppliedKey, 'utf8');
+
+    if (
+      !expectedKey ||
+      !suppliedKey ||
+      expected.length !== supplied.length ||
+      !crypto.timingSafeEqual(expected, supplied)
+    ) {
+      return res.status(401).json({
+        success: false,
+        error: 'Unauthorized'
+      });
+    }
+
+    const body = req.body || {};
+    const requestKey =
+      typeof body.requestKey === 'string' ? body.requestKey.trim() : '';
+    const name = typeof body.name === 'string' ? body.name.trim() : '';
+    const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
+    const age = Number(body.age);
+    const regionId = Number(body.regionId);
+    const date = typeof body.date === 'string' ? body.date : '';
+    const locationUrl =
+      typeof body.locationUrl === 'string' ? body.locationUrl.trim() : '';
+    const tests = Array.isArray(body.tests) ? body.tests : [];
+
+    if (
+      !requestKey || requestKey.length > 128 ||
+      !name || name.length > 255 ||
+      !phone || phone.length > 50 ||
+      body.age === '' || body.age === null ||
+      !Number.isInteger(age) || age < 0 || age > 120 ||
+      !Number.isSafeInteger(regionId) || regionId <= 0 ||
+      tests.length === 0 || tests.length > 30 ||
+      tests.some((t: unknown) => typeof t !== 'string' || !t.trim())
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: 'INVALID_INPUT',
+        message: 'تحقق من الاسم والهاتف والعمر والمنطقة والفحوصات ومفتاح الطلب.'
+      });
+    }
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return res.status(400).json({
+        success: false,
+        error: 'INVALID_DATE',
+        message: 'أرسل التاريخ بالصيغة YYYY-MM-DD.'
+      });
+    }
+
+    const parsedDate = new Date(`${date}T12:00:00Z`);
+    if (
+      Number.isNaN(parsedDate.getTime()) ||
+      parsedDate.toISOString().slice(0, 10) !== date
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: 'INVALID_DATE',
+        message: 'التاريخ غير صحيح.'
+      });
+    }
+
+    const today = new Date();
+    const todayUtc = Date.UTC(
+      today.getUTCFullYear(),
+      today.getUTCMonth(),
+      today.getUTCDate()
+    );
+
+    if (parsedDate.getTime() < todayUtc) {
+      return res.status(400).json({
+        success: false,
+        error: 'PAST_DATE',
+        message: 'لا يمكن الحجز بتاريخ سابق.'
+      });
+    }
+
+    let parsedLocation: URL;
+    try {
+      parsedLocation = new URL(locationUrl);
+    } catch {
+      return res.status(400).json({
+        success: false,
+        error: 'INVALID_LOCATION_URL',
+        message: 'رابط الموقع غير صالح.'
+      });
+    }
+
+    if (!['https:', 'http:'].includes(parsedLocation.protocol)) {
+      return res.status(400).json({
+        success: false,
+        error: 'INVALID_LOCATION_URL',
+        message: 'يجب إرسال رابط موقع صالح.'
+      });
+    }
+
+    
+// تنفيذ الحجز بعد التحقق الأولي من المدخلات
+if (name.split(/\s+/).filter(Boolean).length < 3) {
+  return res.status(400).json({
+    success: false,
+    error: 'INVALID_NAME',
+    message: 'يرجى إدخال الاسم الثلاثي.'
+  });
+}
+
+if (locationUrl.length > 1000) {
+  return res.status(400).json({
+    success: false,
+    error: 'INVALID_LOCATION_URL',
+    message: 'رابط الموقع أطول من الحد المسموح.'
+  });
+}
+
+const requestedNames = tests.map((t: string) => t.trim());
+const normalizedNames = requestedNames.map((t: string) => t.toLocaleLowerCase());
+
+if (new Set(normalizedNames).size !== normalizedNames.length) {
+  return res.status(400).json({
+    success: false,
+    error: 'DUPLICATE_TESTS',
+    message: 'قائمة الفحوصات تحتوي على فحص مكرر.'
+  });
+}
+
+const notes =
+  typeof body.notes === 'string' ? body.notes.trim().slice(0, 5000) : '';
+const dryRun = body.dryRun === true;
+
+let connection: any = null;
+let transactionStarted = false;
+
+try {
+  connection = await pool.getConnection();
+  await connection.beginTransaction();
+  transactionStarted = true;
+
+  // منع تسجيل الطلب نفسه أكثر من مرة
+  const [existingRowsRaw] = await connection.execute(
+    `SELECT id, status, is_pending_acceptance AS isPendingAcceptance
+     FROM appointments
+     WHERE n8n_request_key = ?
+     LIMIT 1
+     FOR UPDATE`,
+    [requestKey]
+  );
+  const existingRows = existingRowsRaw as any[];
+  const existing = existingRows[0];
+
+  if (existing) {
+    await connection.commit();
+    transactionStarted = false;
+
+    return res.status(200).json({
+      success: true,
+      duplicate: true,
+      bookingId: existing.id,
+      status: existing.status,
+      pendingAcceptance: Boolean(existing.isPendingAcceptance),
+      message: 'الطلب مسجل مسبقًا.'
+    });
+  }
+
+  // قراءة المنطقة من قاعدة البيانات، لا من البيانات المرسلة من n8n
+  const [regionsRaw] = await connection.execute(
+    `SELECT id, governorate, shift, region_name AS regionName,
+            time_from AS timeFrom, time_to AS timeTo,
+            friday_time_from AS fridayTimeFrom,
+            friday_time_to AS fridayTimeTo,
+            amman_sector AS ammanSector
+     FROM region_configs
+     WHERE id = ?
+     LIMIT 1`,
+    [regionId]
+  );
+  const regions = regionsRaw as any[];
+  const region = regions[0];
+
+  if (!region) {
+    await connection.rollback();
+    transactionStarted = false;
+    return res.status(404).json({
+      success: false,
+      error: 'REGION_NOT_FOUND',
+      message: 'المنطقة المطلوبة غير موجودة.'
+    });
+  }
+
+
+  // منع الحجز المكرر لنفس رقم الهاتف في المواعيد القادمة
+  const normalizePhone = (value: unknown): string => {
+    let digits = String(value ?? '').replace(/\D/g, '');
+
+    if (digits.startsWith('00962')) {
+      digits = digits.slice(5);
+    } else if (digits.startsWith('962')) {
+      digits = digits.slice(3);
+    } else if (digits.startsWith('0') && digits.length === 10) {
+      digits = digits.slice(1);
+    }
+
+    return digits;
+  };
+
+  const normalizedPhone = normalizePhone(phone);
+
+  if (normalizedPhone.length < 9) {
+    await connection.rollback();
+    transactionStarted = false;
+    return res.status(400).json({
+      success: false,
+      error: 'INVALID_PHONE',
+      message: 'يرجى التحقق من رقم الهاتف.'
+    });
+  }
+
+  const [upcomingRaw] = await connection.execute(
+    `SELECT id, test_id AS testId, name, phone, date, time,
+            location, status
+     FROM appointments
+     WHERE date >= CURDATE()
+       AND status <> 'ملغي'
+     ORDER BY date ASC, id ASC`
+  );
+
+  const upcomingAppointments = upcomingRaw as any[];
+
+  const existingCustomerBooking = upcomingAppointments.find(
+    (appointment: any) =>
+      normalizePhone(appointment.phone) === normalizedPhone
+  );
+
+  if (existingCustomerBooking) {
+    await connection.rollback();
+    transactionStarted = false;
+
+    const bookedDate =
+      existingCustomerBooking.date instanceof Date
+        ? existingCustomerBooking.date.toISOString().slice(0, 10)
+        : String(existingCustomerBooking.date).slice(0, 10);
+
+    return res.status(200).json({
+      success: true,
+      duplicate: true,
+      created: false,
+      error: 'EXISTING_ACTIVE_BOOKING',
+      existingBooking: {
+        bookingId: existingCustomerBooking.id,
+        testId: existingCustomerBooking.testId,
+        name: existingCustomerBooking.name,
+        date: bookedDate,
+        time: existingCustomerBooking.time,
+        location: existingCustomerBooking.location,
+        status: existingCustomerBooking.status
+      },
+      message:
+        `يوجد لديك موعد منزلي مسجل بتاريخ ${bookedDate} ` +
+        `والوقت ${existingCustomerBooking.time}. ` +
+        'لن يتم إنشاء حجز جديد قبل معالجة الموعد الحالي.'
+    });
+  }
+
+  // مطابقة الفحوصات مع الأسماء والأسعار المسجلة في النظام
+  const [examsRaw] = await connection.execute(
+    `SELECT id, name, price, requires_fasting AS requiresFasting
+     FROM examinations`
+  );
+  const exams = examsRaw as any[];
+  const examMap = new Map<string, any>();
+
+  for (const exam of exams) {
+    const key = String(exam.name || '').trim().toLocaleLowerCase();
+    if (key && !examMap.has(key)) examMap.set(key, exam);
+  }
+
+  const matched: any[] = [];
+  const unknownTests: string[] = [];
+
+  for (const requested of requestedNames) {
+    const exam = examMap.get(requested.toLocaleLowerCase());
+    if (!exam) {
+      unknownTests.push(requested);
+    } else {
+      matched.push(exam);
+    }
+  }
+
+  if (unknownTests.length > 0) {
+    await connection.rollback();
+    transactionStarted = false;
+    return res.status(400).json({
+      success: false,
+      error: 'UNKNOWN_TESTS',
+      unknownTests,
+      message: 'تعذر العثور على بعض الفحوصات في قائمة فحوصات النظام.'
+    });
+  }
+
+  const canonicalTests = matched.map(
+    (exam: any) => String(exam.name).trim()
+  );
+  const testName = canonicalTests.join(' + ');
+
+  if (testName.length > 255) {
+    await connection.rollback();
+    transactionStarted = false;
+    return res.status(400).json({
+      success: false,
+      error: 'TEST_NAME_TOO_LONG',
+      message: 'أسماء الفحوصات مجتمعة تتجاوز الحد المسموح.'
+    });
+  }
+
+  let totalPrice = 0;
+  for (const exam of matched) {
+    const price = Number(exam.price);
+    if (!Number.isFinite(price) || price < 0) {
+      throw new Error('INVALID_EXAMINATION_PRICE');
+    }
+    totalPrice += price;
+  }
+  totalPrice = Math.round((totalPrice + Number.EPSILON) * 100) / 100;
+
+  const requiresFasting = matched.some(
+    (exam: any) =>
+      exam.requiresFasting === true ||
+      exam.requiresFasting === 1 ||
+      exam.requiresFasting === '1'
+  );
+
+  // قفل الساحبين المرشحين بترتيب ثابت أثناء فحص السعة
+  const [testersRaw] = await connection.execute(
+    `SELECT id, name, governorate, shift,
+            amman_sector AS ammanSector,
+            daily_limit AS dailyLimit
+     FROM users
+     WHERE role = 'ساحب منزلي'
+       AND (status IS NULL OR status <> 'غير نشط')
+       AND (governorate = ? OR governorate = 'كل المحافظات')
+       AND (shift = ? OR shift = 'كلاهما')
+     ORDER BY id
+     FOR UPDATE`,
+    [region.governorate, region.shift]
+  );
+
+  const testers = (testersRaw as any[]).filter((t: any) => {
+    if (region.governorate !== 'عمان') return true;
+    return (
+      t.ammanSector === region.ammanSector ||
+      t.ammanSector === 'كلاهما'
+    );
+  });
+
+  // قراءة حالية داخل المعاملة لفحص الحجوزات في اليوم المطلوب
+  const [appointmentsRaw] = await connection.execute(
+    `SELECT tester_name AS testerName, status
+     FROM appointments
+     WHERE date = ?
+     FOR UPDATE`,
+    [date]
+  );
+  const dayAppointments = appointmentsRaw as any[];
+
+  const availableTesters = testers.filter((tester: any) => {
+    const limit =
+      tester.dailyLimit && Number(tester.dailyLimit) > 0
+        ? Number(tester.dailyLimit)
+        : 1000;
+
+    const count = dayAppointments.filter(
+      (appointment: any) =>
+        appointment.testerName === tester.name &&
+        appointment.status !== 'ملغي'
+    ).length;
+
+    return count < limit;
+  });
+
+  if (availableTesters.length === 0) {
+    await connection.rollback();
+    transactionStarted = false;
+    return res.status(409).json({
+      success: false,
+      error: 'NO_CAPACITY',
+      message: 'لا توجد سعة حجز متاحة لهذه المنطقة والتاريخ حاليًا.'
+    });
+  }
+
+  const selectedTester = availableTesters[0];
+  const parsedDate = new Date(`${date}T12:00:00Z`);
+  const isFriday = parsedDate.getUTCDay() === 5;
+
+  const from = isFriday
+    ? (region.fridayTimeFrom || region.timeFrom || '08:00')
+    : region.timeFrom;
+  const to = isFriday
+    ? (region.fridayTimeTo || region.timeTo || '12:00')
+    : region.timeTo;
+
+  const formatArabicTime = (value: string) => {
+    const parts = String(value || '').split(':');
+    const hour = Number(parts[0]);
+    const minute = parts[1] || '00';
+
+    if (!Number.isFinite(hour) || hour < 0 || hour > 23) {
+      return String(value);
+    }
+
+    const period = hour >= 12 ? 'م' : 'ص';
+    const hour12 = hour % 12 || 12;
+    return `${hour12}${minute !== '00' ? `:${minute}` : ''} ${period}`;
+  };
+
+  const timeWindow =
+    `من الساعة ${formatArabicTime(from)} لغاية الساعة ${formatArabicTime(to)}`;
+  const location = `${region.governorate} - ${region.regionName}`;
+
+  // فحص تجريبي كامل: لا ينشئ حجزًا ولا يحتفظ بالقفل
+  if (dryRun) {
+    await connection.rollback();
+    transactionStarted = false;
+
+    return res.status(200).json({
+      success: true,
+      dryRun: true,
+      created: false,
+      region: {
+        id: region.id,
+        governorate: region.governorate,
+        regionName: region.regionName
+      },
+      date,
+      isFriday,
+      timeWindow,
+      tests: canonicalTests,
+      totalPrice,
+      requiresFasting,
+      message: 'نجح الفحص التجريبي؛ لم يتم إنشاء حجز.'
+    });
+  }
+
+  const testId =
+    `APT-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+
+  const [insertRaw] = await connection.execute(
+    `INSERT INTO appointments
+      (test_id, name, phone, age, test_name, location, tester_name,
+       date, time, location_url, status, price, notes, requires_fasting,
+       tester_notified, payment_status, priority, insurance, payment_method,
+       last_visit, is_external_request, is_pending_acceptance,
+       n8n_request_key, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+    [
+      testId,
+      name,
+      phone,
+      age,
+      testName,
+      location,
+      selectedTester.name,
+      date,
+      timeWindow,
+      locationUrl,
+      'جديد',
+      totalPrice,
+      notes,
+      requiresFasting ? 1 : 0,
+      0,
+      'غير مدفوع',
+      'عادي',
+      'لا يوجد',
+      'نقدي',
+      '-',
+      1,
+      1,
+      requestKey
+    ]
+  );
+
+  const insertResult = insertRaw as any;
+  const bookingId = insertResult.insertId;
+
+  await connection.commit();
+  transactionStarted = false;
+
+  // واجهة لوحة التحكم تعيد تحميل الحجوزات عند استقبال هذا الحدث
+  io.emit('appointments-updated', {
+    type: 'created',
+    appointment: { id: bookingId }
+  });
+
+  return res.status(201).json({
+    success: true,
+    duplicate: false,
+    bookingId,
+    status: 'جديد',
+    pendingAcceptance: true,
+    region: {
+      id: region.id,
+      governorate: region.governorate,
+      regionName: region.regionName
+    },
+    date,
+    isFriday,
+    timeWindow,
+    tests: canonicalTests,
+    totalPrice,
+    requiresFasting,
+    message: 'تم تسجيل طلب الحجز، وهو بانتظار قبول الفريق.'
+  });
+} catch (error: any) {
+  if (connection && transactionStarted) {
+    try {
+      await connection.rollback();
+    } catch {}
+    transactionStarted = false;
+  }
+
+  // معالجة محاولة تكرار الطلب المتزامنة مع القيد الفريد
+  if (error?.code === 'ER_DUP_ENTRY') {
+    try {
+      const [rowsRaw] = await pool.execute(
+        `SELECT id, status, is_pending_acceptance AS isPendingAcceptance
+         FROM appointments
+         WHERE n8n_request_key = ?
+         LIMIT 1`,
+        [requestKey]
+      );
+      const rows = rowsRaw as any[];
+      if (rows[0]) {
+        return res.status(200).json({
+          success: true,
+          duplicate: true,
+          bookingId: rows[0].id,
+          status: rows[0].status,
+          pendingAcceptance: Boolean(rows[0].isPendingAcceptance),
+          message: 'الطلب مسجل مسبقًا.'
+        });
+      }
+    } catch {}
+  }
+
+  console.error(
+    '[n8n booking] Failed:',
+    error?.code || error?.message || 'UNKNOWN'
+  );
+
+  return res.status(500).json({
+    success: false,
+    error: 'BOOKING_FAILED',
+    message: 'تعذر تسجيل طلب الحجز حاليًا. يرجى المحاولة لاحقًا.'
+  });
+} finally {
+  if (connection) connection.release();
+}
+
+  });
+
+  // === API ROUTES ===
+
+  // Ratings routes
+  app.get('/api/ratings', async (req, res) => {
+    try {
+
+      const data = await db.select().from(ratings).orderBy(desc(ratings.createdAt));
+      res.json(data);
+    } catch (err: any) {
+      console.error(err);
+      res.status(500).json({ error: err.message || "Failed to load ratings", cause: err.cause ? err.cause.message : null });
+    }
+  });
+
+  app.post('/api/ratings', async (req, res) => {
+    try {
+      const { patientName, stars, comment } = req.body;
+      if (!patientName || !stars) {
+        return res.status(400).json({ error: 'Patient name and stars are required.' });
+      }
+      const [inserted] = await db.insert(ratings).values({
+        patientName,
+        stars: Number(stars),
+        comment: comment || '',
+      } as any).$returningId();
+      const newRating = { id: inserted.id, patientName, stars: Number(stars), comment: comment || '' };
+      res.status(201).json(newRating);
+    } catch (err: any) {
+      console.error(err);
+      res.status(500).json({ error: err.message || "Failed to create rating" });
+    }
+  });
+
+  app.put('/api/ratings/:id/response', async (req, res) => {
+    try {
+      const { adminResponse } = req.body;
+      await db.update(ratings)
+        .set({ adminResponse })
+        .where(eq(ratings.id, Number(req.params.id)));
+      res.json({ success: true });
+    } catch (e: any) {
+      console.error('Failed to update admin response:', e);
+      res.status(500).json({ error: 'Failed to update rating response' });
+    }
+  });
+
+  app.delete('/api/ratings/:id', async (req, res) => {
+    try {
+      await db.delete(ratings).where(eq(ratings.id, Number(req.params.id)));
+      res.json({ success: true });
+    } catch (err: any) {
+      console.error(err);
+      res.status(500).json({ error: err.message || "Failed to delete rating" });
+    }
+  });
+
+  app.use('/api/calls', callLogsRoutes);
+  
+  app.get('/logo.png', (req, res) => {
+    const logoPath = path.join(process.cwd(), 'logo.png');
+    if (fs.existsSync(logoPath)) {
+      res.sendFile(logoPath);
+    } else {
+      res.status(404).send('Logo not found');
+    }
+  });
+  
+  app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', db: true });
+  });
+
+  app.get('/api/resolve-location', async (req, res) => {
+    try {
+      const { url } = req.query;
+      if (!url || typeof url !== 'string') {
+        return res.status(400).json({ error: 'URL is required' });
+      }
+
+      // If it's already got coordinates, return it
+      const coordRegex = /(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/;
+      const match = url.match(coordRegex);
+      if (match) {
+        return res.json({ lat: parseFloat(match[1]), lng: parseFloat(match[2]) });
+      }
+
+      // Otherwise try to follow redirects
+        // Clean and validate incoming map URL
+        const cleanUrl = String(url)
+          .trim()
+          .replace(/^[—–-]+\s*/, '')
+          .replace(/^["'<>]+|["'<>]+$/g, '')
+
+        if (!/^https?:\/\//i.test(cleanUrl)) {
+          return res.status(400).json({ error: 'Invalid URL' });
+        }
+
+      const fetchResponse = await fetch(cleanUrl, {
+        method: 'HEAD',
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+        }
+      });
+      
+      const finalUrl = fetchResponse.url;
+      const urlRegex = /@(-?\d+\.\d+),(-?\d+\.\d+)/;
+      const qRegex = /[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)/;
+      const llRegex = /[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)/;
+
+      const finalMatch = finalUrl.match(urlRegex) || finalUrl.match(qRegex) || finalUrl.match(llRegex);
+      if (finalMatch) {
+        return res.json({ lat: parseFloat(finalMatch[1]), lng: parseFloat(finalMatch[2]), finalUrl });
+      }
+
+      // Try GET if HEAD didn't work (sometimes headers are different)
+      const getResponse = await fetch(cleanUrl, { 
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+        }
+      });
+      const getFinalUrl = getResponse.url;
+      const getFinalMatch = getFinalUrl.match(urlRegex) || getFinalUrl.match(qRegex) || getFinalUrl.match(llRegex);
+      
+      if (getFinalMatch) {
+        return res.json({ lat: parseFloat(getFinalMatch[1]), lng: parseFloat(getFinalMatch[2]), finalUrl: getFinalUrl });
+      }
+
+      // Try parsing HTML for meta tags just in case
+      const html = await getResponse.text();
+      const metaRegex = /content=".*?(?:@|q=|ll=)(-?\d+\.\d+),(-?\d+\.\d+).*?"/i;
+      const metaMatch = html.match(metaRegex);
+      if (metaMatch) {
+        return res.json({ lat: parseFloat(metaMatch[1]), lng: parseFloat(metaMatch[2]) });
+      }
+
+      res.status(404).json({ error: 'Could not extract coordinates', finalUrl: getFinalUrl });
+    } catch (error) {
+      console.warn('Error resolving location:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  // Login endpoint
+  app.post('/api/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      let normalizedEmail = email?.trim() || '';
+      if (normalizedEmail && !normalizedEmail.includes('@')) {
+        normalizedEmail = `${normalizedEmail.toLowerCase()}@manzily.com`;
+      }
+      
+      let usersList: any[] = [];
+      try {
+        usersList = await db.select().from(users);
+      } catch (dbErr) {
+        console.error(dbErr);
+      }
+      
+      // FALLBACK MOCK DATA IF DB IS NOT WORKING
+      if (usersList.length === 0) {
+        usersList = [
+          { id: '1', email: 'admin@manzily.com', name: 'admin', role: 'مسؤول', password: '123', status: 'نشط' },
+          { id: '2', email: 'phlebotomist@manzily.com', name: 'phlebotomist', role: 'ساحب منزلي', password: '123', status: 'نشط' }
+        ];
+      }
+
+      const user = usersList.find((u: any) => 
+        (u.email?.toLowerCase() === normalizedEmail.toLowerCase() || 
+         u.name?.toLowerCase() === email?.toLowerCase() ||
+         u.email?.split('@')[0]?.toLowerCase() === email?.toLowerCase()) && 
+        u.password === password
+      );
+      
+      if (user) {
+        if (user.status !== 'نشط') {
+          res.status(403).json({ error: 'الحساب غير نشط' });
+        } else {
+          res.json(user);
+        }
+      } else {
+        res.status(401).json({ error: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
+      }
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'حدث خطأ أثناء تسجيل الدخول' });
+    }
+  });
+
+  // Notifications API
+  app.get('/api/notifications/pending/:testerName', async (req, res) => {
+    try {
+      const todayStr = new Intl.DateTimeFormat('en-CA', { 
+        timeZone: 'Asia/Amman', 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit' 
+      }).format(new Date());
+
+      const pending = await db.select()
+        .from(appointments)
+        .where(
+          and(
+            eq(appointments.testerName, req.params.testerName),
+            eq(appointments.testerNotified, false),
+            eq(appointments.date, todayStr)
+          )
+        );
+      res.json(pending);
+    } catch(e) {
+      console.error(e);
+      res.status(500).json({ error: 'Failed to fetch pending notifications' });
+    }
+  });
+  
+  app.put('/api/appointments/:id/mark-notified', async (req, res) => {
+    try {
+      await db.update(appointments)
+        .set({ testerNotified: true })
+        .where(eq(appointments.id, Number(req.params.id)));
+      res.json({ success: true });
+    } catch(e) {
+      console.error(e);
+      res.status(500).json({ error: 'Failed to mark notified' });
+    }
+  });
+
+  // Get appointments
+  app.get('/api/appointments', async (req, res) => {
+    try {
+      const allAppointments = await appointmentService.getAll();
+      res.json(allAppointments);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to fetch appointments' });
+    }
+  });
+
+  // Create appointment
+  app.post('/api/appointments', async (req, res) => {
+    try {
+    console.log('REQUEST BODY:', JSON.stringify(req.body, null, 2));
+      const newAppt = await appointmentService.save(req.body);
+        io.emit('appointments-updated', {
+          type: 'created',
+          appointment: newAppt
+        });
+
+      
+      if (req.body.testerName && req.body.testerName !== 'غير محدد' && req.body.testerName !== '-') {
+        const shouldNotify = await shouldNotifyTester(req.body.testerName, newAppt.time, newAppt.date);
+        
+        if (!shouldNotify) {
+          // If shouldn't notify, silently mark as notified so it doesn't pop up later
+          await db.update(appointments)
+            .set({ testerNotified: true })
+            .where(eq(appointments.id, newAppt.id));
+        } else {
+          io.emit('appointment-assigned', {
+            testerName: req.body.testerName,
+            appointment: newAppt
+          });
+        }
+      }
+      
+      res.json(newAppt);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to create appointment' });
+    }
+  });
+// ================================
+// External Patient Booking
+// ================================
+app.post(
+  '/api/patient-booking',
+  upload.single('attachment'),
+  async (req, res) => {
+    try {
+      let attachmentUrl = '';
+
+      if (req.file) {
+        attachmentUrl =
+          `${req.protocol}://${req.get('host')}/uploads/external-requests/${req.file.filename}`;
+      }
+
+      const appointmentData = {
+        name: req.body.name,
+        phone: req.body.phone,
+        age: parseInt(req.body.age || '0'),
+        testName: req.body.testName,
+        locationUrl: req.body.locationUrl,
+        location: req.body.location,
+        date: req.body.date,
+        time: req.body.time,
+        testerName: req.body.testerName,
+        status: req.body.status || 'جديد',
+        notes: req.body.notes || '',
+        attachmentUrl,
+        price: parseFloat(req.body.price || '0'),
+        requiresFasting: req.body.requiresFasting === 'true',
+        isExternalRequest: req.body.isExternalRequest === 'true',
+        isPendingAcceptance: req.body.isPendingAcceptance === 'true'
+      };
+
+      console.log('External Booking:', appointmentData);
+
+      const newAppt = await appointmentService.save(appointmentData);
+        io.emit('appointments-updated', {
+          type: 'created',
+          appointment: newAppt
+        });
+
+
+      res.json(newAppt);
+
+    } catch (error) {
+      console.error('External booking failed:', error);
+      res.status(500).json({
+        error: 'Failed to create external booking'
+      });
+    }
+  }
+);
+app.post(
+  '/api/upload',
+  upload.single('attachment'),
+  async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          error: 'No file uploaded'
+        });
+      }
+
+      const url =
+        `${req.protocol}://${req.get('host')}` +
+        `/uploads/external-requests/${req.file.filename}`;
+
+      res.json({
+        success: true,
+        url,
+        fileName: req.file.filename
+      });
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        error: 'Upload failed'
+      });
+    }
+  }
+);
+  // Update appointment status
+  app.put('/api/appointments/:id/status', async (req, res) => {
+    try {
+      const userWhoChanged = req.body.user || 'مستخدم النظام';
+      const notes = req.body.notes;
+      const amountCollected = req.body.amountCollected;
+      const paymentMethod = req.body.paymentMethod;
+      const priceDiffReason = req.body.priceDiffReason;
+      const updatedAppt = await appointmentService.updateStatus(req.params.id, req.body.status, { notes, amountCollected, paymentMethod, priceDiffReason });
+        io.emit('appointments-updated', {
+          type: 'updated',
+          appointment: updatedAppt
+        });
+
+      res.json(updatedAppt);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to update appointment status' });
+    }
+  });
+
+  // Update appointment details
+  app.put('/api/appointments/:id', async (req, res) => {
+    try {
+      const data = { ...req.body };
+      delete data.id;
+      delete data.createdAt;
+      if (data.age !== undefined) data.age = parseInt(data.age) || 0;
+      if (data.price !== undefined) data.price = parseFloat(data.price) || 0;
+
+      // Check if testerName changed
+      const [existingAppt] = await db.select().from(appointments).where(eq(appointments.id, Number(req.params.id)));
+      let shouldNotify = false;
+      if (
+        data.testerName && 
+        data.testerName !== 'غير محدد' && 
+        data.testerName !== '-' && 
+        (!existingAppt || existingAppt.testerName !== data.testerName)
+      ) {
+        shouldNotify = await shouldNotifyTester(data.testerName, data.time || existingAppt?.time, data.date || existingAppt?.date);
+        data.testerNotified = !shouldNotify;
+      }
+
+      const updatedAppt = await appointmentService.update(req.params.id, data);
+        io.emit('appointments-updated', {
+          type: 'updated',
+          appointment: updatedAppt
+        });
+
+      
+      if (shouldNotify && data.testerNotified === false) {
+        io.emit('appointment-assigned', {
+          testerName: data.testerName,
+          appointment: { ...existingAppt, ...data, id: req.params.id }
+        });
+      }
+      
+      res.json(updatedAppt);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to update appointment' });
+    }
+  });
+
+  // Delete appointment
+  app.delete('/api/appointments/:id', async (req, res) => {
+    try {
+      const deletedBy = req.body?.deletedBy || 'مسؤول النظام';
+      await appointmentService.delete(req.params.id);
+        io.emit('appointments-updated', {
+          type: 'deleted',
+          appointmentId: req.params.id
+        });
+
+      res.json({ success: true });
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to delete appointment' });
+    }
+  });
+
+  // Get complete Audit Trail (combining current and deleted appointments)
+  app.get('/api/audit-trail', async (req, res) => {
+    try {
+      const auditTrail = await appointmentService.getAuditTrail();
+      res.json(auditTrail);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).json({ error: 'Failed to fetch audit trail logs' });
+    }
+  });
+
+  // Get missed calls (mock)
+  app.get('/api/missed-calls', async (req, res) => {
+    res.json([]);
+  });
+
+  // Get users
+  app.get('/api/users', async (req, res) => {
+    try {
+      let dbUsers = await db.select().from(users);
+      res.json(dbUsers);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  // Add/Update user
+  app.post('/api/users', async (req, res) => {
+    const userData = req.body;
+    const email = userData.email?.toLowerCase().trim();
+    const id = userData.id || crypto.randomUUID();
+    const cleanData = {
+      id,
+      name: userData.name,
+      email: email,
+      phone: userData.phone,
+      password: userData.password,
+      role: userData.role,
+      status: userData.status,
+      governorate: userData.governorate || 'كل المحافظات',
+      shift: userData.shift || 'كلاهما',
+      ammanSector: userData.ammanSector || 'كلاهما',
+      dailyLimit: userData.dailyLimit ? parseInt(userData.dailyLimit) : null,
+      notificationStart: userData.notificationStart || null,
+      notificationEnd: userData.notificationEnd || null
+    };
+
+    try {
+      if (userData.id) {
+         await db.update(users).set(cleanData).where(eq(users.id, userData.id));
+      } else {
+         // @ts-ignore
+          await db.insert(users).values({ createdAt: new Date(), dailyLimit: null, ...cleanData } as any);
+      }
+      res.json({ success: true, id });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to save user" });
+    }
+  });
+
+  // Delete user
+  app.delete('/api/users/:id', async (req, res) => {
+    try {
+      await db.delete(users).where(eq(users.id, req.params.id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to delete user" });
+    }
+  });
+
+  // Get examinations
+  app.get('/api/examinations', async (req, res) => {
+    try {
+      let list = await db.select().from(examinations);
+      res.json(list);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to load examinations" });
+    }
+  });
+
+  // Add/Update examination
+  app.post('/api/examinations', async (req, res) => {
+    const examData = req.body;
+    const id = examData.id;
+    
+    const cleanData = {
+      name: examData.name,
+      price: parseFloat(examData.price) || 0,
+      notes: examData.notes || '',
+      requiresFasting: examData.requiresFasting || false,
+      updatedAt: new Date().toISOString()
+    };
+
+    try {
+      if (id) {
+        await db.update(examinations).set(cleanData).where(eq(examinations.id, id));
+        res.json({ success: true, id });
+      } else {
+        const newId = crypto.randomUUID();
+        // @ts-ignore
+          await db.insert(examinations).values({
+          id: newId,
+          ...cleanData
+        , createdAt: new Date(), notes: null } as any);
+        res.json({ success: true, id: newId });
+      }
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to save examination" });
+    }
+  });
+
+  // Bulk add examinations (for Excel import)
+  app.post('/api/examinations/bulk', async (req, res) => {
+    const list = req.body;
+    if (!Array.isArray(list)) {
+      return res.status(400).json({ error: 'Expected array of examinations' });
+    }
+
+    const values = list.filter(item => item.name).map(item => ({
+      id: crypto.randomUUID(),
+      name: item.name,
+      price: parseFloat(item.price) || 0,
+      notes: item.notes || '',
+      requiresFasting: item.requiresFasting || false
+    }));
+
+    try {
+      if (values.length > 0) {
+        for (const exam of values) {
+          const exists = await db
+            .select()
+            .from(examinations)
+            .where(eq(examinations.name, exam.name))
+            .limit(1);
+
+          if (exists.length === 0) {
+            // @ts-ignore
+            await db.insert(examinations).values(exam as any);
+          }
+        }
+      }
+      res.json({ success: true, count: list.length });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to import examinations" });
+    }
+  });
+
+  // Delete all examinations
+  app.delete('/api/examinations/all', async (req, res) => {
+    try {
+      await db.delete(examinations);
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to delete all examinations" });
+    }
+  });
+
+  // Delete examination
+  app.delete('/api/examinations/:id', async (req, res) => {
+    try {
+      await db.delete(examinations).where(eq(examinations.id, req.params.id));
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to delete examination" });
+    }
+  });
+
+  // === REGIONS CONFIG API ===
+  // Get all regions (seeds default ones if empty)
+  app.get('/api/regions', async (req, res) => {
+    try {
+      let list = await db.select().from(regionConfigs);
+      res.json(list);
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to load regions" });
+    }
+  });
+
+  // Save/Update region config
+  app.post('/api/regions', async (req, res) => {
+    const regionData = req.body;
+    const id = regionData.id;
+
+    const cleanData: any = {
+      governorate: regionData.governorate,
+      shift: regionData.shift,
+      regionName: regionData.regionName?.trim(),
+      timeFrom: regionData.timeFrom || '08:00',
+      timeTo: regionData.timeTo || '12:00',
+      fridayTimeFrom: regionData.fridayTimeFrom || '08:00',
+      fridayTimeTo: regionData.fridayTimeTo || '12:00',
+      updatedAt: new Date()
+    };
+
+    if (regionData.governorate === 'عمان') {
+      cleanData.ammanSector = regionData.ammanSector || 'غربية';
+    } else {
+      cleanData.ammanSector = null;
+    }
+
+    try {
+      if (id) {
+        await db.update(regionConfigs).set(cleanData).where(eq(regionConfigs.id, parseInt(id)));
+        res.json({ success: true, id });
+      } else {
+                const [inserted] = await db.insert(regionConfigs).values({
+          ...cleanData,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          fridayTimeFrom: cleanData.fridayTimeFrom || null,
+          fridayTimeTo: cleanData.fridayTimeTo || null
+        } as any).$returningId();
+        const result = { id: inserted.id };
+        res.json({ success: true, id: result.id });
+      }
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to save region config" });
+    }
+  });
+
+  // Bulk add regions (for Excel import)
+  app.post('/api/regions/bulk', async (req, res) => {
+    const list = req.body;
+    if (!Array.isArray(list)) {
+      return res.status(400).json({ error: 'Expected array of regions' });
+    }
+
+    let count = 0;
+    const insertedItems: any[] = [];
+
+    try {
+      for (const item of list) {
+        if (!item.regionName || !item.governorate) continue;
+
+        const governorate = item.governorate.trim();
+        const regionName = item.regionName.trim();
+        const shift = item.shift === 'مسائي' || item.shift === 'evening' ? 'مسائي' : 'صباحي';
+        
+        let ammanSector = null;
+        if (governorate === 'عمان') {
+          const s = item.ammanSector ? item.ammanSector.trim() : '';
+          ammanSector = s.includes('شرق') ? 'شرقية' : 'غربية';
+        }
+
+        const timeFrom = item.timeFrom || (shift === 'صباحي' ? '08:00' : '14:00');
+        const timeTo = item.timeTo || (shift === 'صباحي' ? '12:00' : '18:00');
+
+        const fridayTimeFrom =
+          item.fridayTimeFrom ||
+          item['Friday Time From'] ||
+          timeFrom;
+
+        const fridayTimeTo =
+          item.fridayTimeTo ||
+          item['Friday Time To'] ||
+          timeTo;
+
+        try {
+          await db.insert(regionConfigs).values({ 
+            governorate,
+            shift,
+            regionName,
+            timeFrom,
+            timeTo,
+            fridayTimeFrom,
+            fridayTimeTo,
+            ammanSector,
+            createdAt: new Date() } as any);
+        } catch (dbErr) {
+          // Keep item to insert in fallback store if needed
+          insertedItems.push({
+            governorate,
+            shift,
+            regionName,
+            timeFrom,
+            timeTo,
+            fridayTimeFrom,
+            fridayTimeTo,
+            ammanSector,
+            createdAt: new Date()
+          });
+        }
+        count++;
+      }
+      res.json({ success: true, count });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to import regions" });
+    }
+  });
+
+  // Delete all regions
+  app.delete('/api/regions/all', async (req, res) => {
+    try {
+      await db.delete(regionConfigs);
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to delete all region configs" });
+    }
+  });
+
+  // Delete region config
+  app.delete('/api/regions/:id', async (req, res) => {
+    try {
+      await db.delete(regionConfigs).where(eq(regionConfigs.id, parseInt(req.params.id)));
+      res.json({ success: true });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Failed to delete region config" });
+    }
+  });
+
+  // === SECURE API KEY MANAGEMENT & BACKEND PROXY ENDPOINTS ===
+
+  // Get appearance settings
+  app.get('/api/appearance', async (req, res) => {
+    try {
+      const appearance = await getStoredAppearance();
+      res.json(appearance);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve appearance settings' });
+    }
+  });
+
+  // Save appearance settings
+  app.post('/api/appearance', async (req, res) => {
+    try {
+      const saved = await saveStoredAppearance(req.body);
+      res.json({ success: true, appearance: saved });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to save appearance settings' });
+    }
+  });
+
+  // 1. Get Google Maps API Key safely
+  app.get('/api/keys/google-maps', async (req, res) => {
+    try {
+      const keys = await getStoredKeys();
+      res.json({ key: keys.GOOGLE_MAPS_API_KEY || '' });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve Google Maps key' });
+    }
+  });
+
+  // 2. Get all keys
+  app.get('/api/keys', async (req, res) => {
+    try {
+      const keys = await getStoredKeys();
+      res.json(keys);
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to fetch keys' });
+    }
+  });
+
+  // 3. Save all keys
+  app.post('/api/keys', async (req, res) => {
+    try {
+      const saved = await saveStoredKeys(req.body);
+      res.json({ success: true, keys: saved });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to save keys' });
+    }
+  });
+
+  // 4. Download keys configuration with version
+  app.get('/api/keys/download', async (req, res) => {
+    try {
+      const keys = await getStoredKeys();
+      const filename = `health_lis_keys_${keys.version || 'v1'}.json`;
+      res.setHeader('Content-disposition', `attachment; filename=${filename}`);
+      res.setHeader('Content-type', 'application/json');
+      res.send(JSON.stringify(keys, null, 2));
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to download keys file' });
+    }
+  });
+
+  // 5. Import keys configuration
+  app.post('/api/keys/import', async (req, res) => {
+    try {
+      const { GOOGLE_MAPS_API_KEY, WHATSAPP_API_URL, WHATSAPP_API_KEY, WHATSAPP_API_TEMPLATE, version } = req.body;
+      const importedKeys = {
+        GOOGLE_MAPS_API_KEY,
+        WHATSAPP_API_URL,
+        WHATSAPP_API_KEY,
+        WHATSAPP_API_TEMPLATE,
+        version: version || 'v1.0.0'
+      };
+      const saved = await saveStoredKeys(importedKeys);
+      res.json({ success: true, keys: saved });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to import keys' });
+    }
+  });
+
+  // 6. Send WhatsApp message securely from the server (completely hidden in the background!)
+  app.post('/api/keys/send-whatsapp', async (req, res) => {
+    try {
+      const {
+        phone,
+        name,
+        date,
+        time,
+        region,
+        price,
+        exams,
+        attachmentUrl,
+        status
+      } = req.body;
+      
+      const keys = await getStoredKeys();
+      const waUrl = keys.WHATSAPP_API_URL;
+      const waKey = keys.WHATSAPP_API_KEY;
+      let waTemplate = keys.WHATSAPP_API_TEMPLATE;
+      if (req.body.status === 'مكتمل') {
+        waTemplate = keys.WHATSAPP_COMPLETED_TEMPLATE || keys.WHATSAPP_API_TEMPLATE;
+      } else if (req.body.status === 'ملغي') {
+        waTemplate = keys.WHATSAPP_CANCELED_TEMPLATE || keys.WHATSAPP_API_TEMPLATE;
+      }
+
+      if (!waUrl || !waKey) {
+        return res.status(400).json({ error: 'WhatsApp integration is not configured on the server.' });
+      }
+
+      // Replace variables in template
+      let messageText = `مرحبًا ${name} 👋
+
+تم تأكيد وتثبيت موعدكم للسحب المنزلي لدى
+🏥 مختبرات العربي الطبية
+
+📅 التاريخ:
+${date}
+
+🕒 موعد الزيارة:
+${time}
+
+📍 المنطقة:
+${region}
+
+🧪 الفحوصات المطلوبة:
+${exams}
+
+💰 إجمالي المبلغ:
+${price} د.أ
+
+✨ نرجو منكم التواجد في الموعد المحدد لضمان تقديم الخدمة بأفضل جودة.
+
+📞 للاستفسار أو تعديل الموعد يرجى التواصل معنا.
+
+🌿 شكراً لاختياركم مختبرات العربي الطبية.
+نتمنى لكم دوام الصحة والعافية.`;
+
+      if (req.body.requiresFasting) {
+        messageText += '\n\n*ملاحظة هامة:* الفحوصات المطلوبة تتطلب صيام.';
+      }
+
+      // Prepare phone number (strip leading zeros and add country code Jordan 962)
+      let formattedPhone = (phone || '').trim();
+      if (formattedPhone.startsWith('0')) {
+        formattedPhone = '962' + formattedPhone.substring(1);
+      } else if (!formattedPhone.startsWith('962') && !formattedPhone.startsWith('+')) {
+        formattedPhone = '962' + formattedPhone;
+      }
+      if (formattedPhone.startsWith('+')) {
+        formattedPhone = formattedPhone.substring(1);
+      }
+
+      console.log(`Sending WhatsApp message to ${formattedPhone} via server-side proxy...`);
+      
+      let templateName = 'appointment_confirmed';
+      let parameters: any[] = [];
+
+      if (status === 'مكتمل') {
+        templateName = 'appointment_completedd';
+        parameters = [
+          { type: 'text', text: name || '' },
+          { type: 'text', text: 'https://manzile.alarabilab.com/rating' }
+        ];
+      } else if (status === 'ملغي') {
+        templateName = 'appointment_cancelled';
+        parameters = [
+          { type: 'text', text: name || '' },
+          { type: 'text', text: req.body.cancelReason || 'تم إلغاء الموعد.' }
+        ];
+      } else {
+        parameters = [
+          { type: 'text', text: name || '' },
+          { type: 'text', text: date || '' },
+          { type: 'text', text: time || '' },
+          { type: 'text', text: region || '' },
+          {
+            type: 'text',
+            text: exams && exams.trim() !== ''
+              ? exams
+              : 'لا يوجد فحوصات مضافة'
+          },
+          {
+            type: 'text',
+            text: attachmentUrl && attachmentUrl.trim() !== ''
+              ? attachmentUrl
+              : 'لا يوجد مرفق'
+          },
+          {
+            type: 'text',
+            text: String(price || '0')
+          },
+          {
+            type: 'text',
+            text: req.body.requiresFasting 
+              ? 'الفحوصات المطلوبة تتطلب صيام من 10 إلى 12 ساعة (يسمح بشرب الماء فقط).'
+              : 'لا يوجد شروط مسبقة (لا يشترط الصيام).'
+          }
+        ];
+      }
+
+      const payload = {
+        recipient_number: formattedPhone,
+        platform: 'whatsapp',
+        message_object: {
+          type: 'template',
+          content: {
+            name: templateName,
+            language: {
+              code: 'ar'
+            },
+            components: [
+              {
+                type: 'body',
+                parameters
+              }
+            ]
+          }
+        }
+      };
+
+console.log("===== WHATSAPP PAYLOAD =====");
+      console.log("Message Text:");
+      console.log(messageText);
+      console.log("Payload:");
+      console.log(JSON.stringify(payload, null, 2));
+
+      const postData =
+        'json_data=' + encodeURIComponent(JSON.stringify(payload));
+
+      const response = await fetch(waUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': waKey.startsWith('Bearer ')
+            ? waKey
+            : `Bearer ${waKey}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: postData
+      });
+
+      const responseText = await response.text();
+      console.log('WhatsApp proxy response:', responseText);
+
+      res.json({ success: true, response: responseText });
+    } catch (err: any) {
+      console.warn('WhatsApp proxy failed:', err);
+      res.status(500).json({ error: err.message || 'Failed to send WhatsApp message via proxy' });
+    }
+  });
+
+  
+  // === VITE MIDDLEWARE ===
+  if (process.env.NODE_ENV !== 'production') {
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  } else {
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  }
+
+  const activePhlebotomists = new Map();
+
+  io.on('connection', (socket) => {
+    console.log('Client connected:', socket.id);
+    
+    // Send existing locations immediately
+    socket.emit('phlebotomists-update', Array.from(activePhlebotomists.values()));
+
+    socket.on('update-location', (data) => {
+      // Expecting data: { id, name, initials, lat, lng, battery, speed, status }
+      activePhlebotomists.set(data.id, {
+        ...data,
+        socketId: socket.id,
+        isOffline: false,
+        lastUpdate: Date.now()
+      });
+      // Broadcast to everyone else
+      io.emit('phlebotomists-update', Array.from(activePhlebotomists.values()));
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Client disconnected:', socket.id);
+      let changed = false;
+      activePhlebotomists.forEach((p, key) => {
+        if (p.socketId === socket.id) {
+          p.isOffline = true;
+          p.status = 'غير متصل';
+          p.badgeClass = 'bg-slate-50 text-slate-600 border-slate-200';
+          changed = true;
+        }
+      });
+      if (changed) {
+        io.emit('phlebotomists-update', Array.from(activePhlebotomists.values()));
+      }
+    });
+  });
+
+  // Check for stale connections every 30 seconds
+  setInterval(() => {
+    let changed = false;
+    const now = Date.now();
+    activePhlebotomists.forEach((p, key) => {
+      if (!p.isOffline && (now - p.lastUpdate > 60000)) { // 1 minute timeout
+        p.isOffline = true;
+        p.status = 'غير متصل';
+        p.badgeClass = 'bg-slate-50 text-slate-600 border-slate-200';
+        changed = true;
+      }
+    });
+    if (changed) {
+      io.emit('phlebotomists-update', Array.from(activePhlebotomists.values()));
+    }
+  }, 30000);
+
+  try {
+    await db.execute(sql`ALTER TABLE ratings ADD COLUMN admin_response TEXT;`);
+    console.log('Added admin_response to ratings table');
+  } catch (e: any) {}
+  
+  try {
+    await db.execute(sql`ALTER TABLE appointments ADD COLUMN tester_notified BOOLEAN DEFAULT FALSE;`);
+    console.log('Added tester_notified to appointments table');
+  } catch (e: any) {}
+  
+  try {
+    await db.execute(sql`ALTER TABLE users ADD COLUMN notification_start VARCHAR(50);`);
+    await db.execute(sql`ALTER TABLE users ADD COLUMN notification_end VARCHAR(50);`);
+    console.log('Added notification times to users table');
+  } catch (e: any) {}
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
+  });
+}
+
+startServer();

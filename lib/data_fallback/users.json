@@ -1,0 +1,48 @@
+[
+  {
+    "id": "U-001",
+    "name": "Admin",
+    "email": "admin@manzeli.com",
+    "role": "مسؤول",
+    "status": "نشط",
+    "phone": "0790000001",
+    "password": "123456",
+    "governorate": "كل المحافظات",
+    "shift": "كلاهما",
+    "ammanSector": "كلاهما",
+    "dailyLimit": null
+  },
+  {
+    "id": "U-002",
+    "name": "سالم محمود",
+    "email": "scheduler@manzeli.com",
+    "role": "مبرمج مواعيد",
+    "status": "نشط",
+    "phone": "0790000002",
+    "password": "password",
+    "governorate": "كل المحافظات",
+    "shift": "كلاهما"
+  },
+  {
+    "id": "U-003",
+    "name": "خالد عبد الله",
+    "email": "khaled@manzeli.com",
+    "role": "ساحب منزلي",
+    "status": "نشط",
+    "phone": "0790000003",
+    "password": "password",
+    "governorate": "عمان",
+    "shift": "كلاهما"
+  },
+  {
+    "id": "U-004",
+    "name": "منى علي",
+    "email": "mona@manzeli.com",
+    "role": "ساحب منزلي",
+    "status": "غير نشط",
+    "phone": "0790000004",
+    "password": "password",
+    "governorate": "عمان",
+    "shift": "صباحي"
+  }
+]

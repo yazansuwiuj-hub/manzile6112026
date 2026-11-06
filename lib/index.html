@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alarabilab Home</title>
+  </head>
+  <body>
+    <div id="root">
+      <div style="display: flex; flex-direction: column; min-height: 100vh; justify-content: center; align-items: center; background-color: #f8fafc; font-family: system-ui, sans-serif;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top-color: #16a34a; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        </div>
+        <div style="margin-bottom: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b;">
+            <span>POWERED BY</span>
+            <span style="color: #0070c0; font-weight: 900; font-size: 11px;">YZN</span>
+            <span>TECHNOLOGIES</span>
+          </div>
+          <div style="font-size: 7px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: #94a3b8; margin-top: 2px;">
+            LABORATORY QUALITY CONTROL SYSTEM
+          </div>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

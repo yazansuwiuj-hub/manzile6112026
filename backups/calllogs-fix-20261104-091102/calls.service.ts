@@ -1,0 +1,71 @@
+import { mysqlPool } from "../db/mysql";
+
+export class CallsService {
+
+  async getDashboard(date: string) {
+    const totalStart = performance.now();
+
+    const startDate = `${date} 00:00:00`;
+    const endDate = `${date} 00:00:00`;
+
+    const missedStart = performance.now();
+
+    const [missed] = await mysqlPool.query(
+      `SELECT uniqueid,src,dst,calldate,disposition
+       FROM cdr
+       WHERE disposition='NO ANSWER'
+       AND (lastapp='Queue' OR lastapp='Dial')
+       AND calldate >= ?
+       AND calldate < DATE_ADD(?, INTERVAL 1 DAY)
+       ORDER BY calldate DESC`,
+      [startDate, endDate]
+    );
+
+    console.log(`[Dashboard] missed: ${(performance.now() - missedStart).toFixed(2)} ms`);
+
+    const answeredStart = performance.now();
+
+    const [answered] = await mysqlPool.query(
+      `SELECT uniqueid,src,dst,dstchannel,calldate,duration,billsec,disposition
+       FROM cdr
+       WHERE disposition='ANSWERED'
+       AND (lastapp='Queue' OR lastapp='Dial')
+       AND calldate >= ?
+       AND calldate < DATE_ADD(?, INTERVAL 1 DAY)
+       ORDER BY calldate DESC`,
+      [startDate, endDate]
+    );
+
+    console.log(`[Dashboard] answered: ${(performance.now() - answeredStart).toFixed(2)} ms`);
+
+    const outboundStart = performance.now();
+
+    const [outbound] = await mysqlPool.query(
+      `SELECT uniqueid,dst,cnam,calldate,disposition
+       FROM cdr
+       WHERE disposition='ANSWERED'
+       AND (outbound_cnum='0797003356' OR src REGEXP '^[1-9][0-9]{2}$')
+       AND calldate >= ?
+       AND calldate < DATE_ADD(?, INTERVAL 1 DAY)
+       ORDER BY calldate DESC`,
+      [startDate, endDate]
+    );
+
+    console.log(`[Dashboard] outbound: ${(performance.now() - outboundStart).toFixed(2)} ms`);
+
+    const result = {
+      summary: {
+        missed: (missed as any[]).length,
+        answered: (answered as any[]).length,
+        outbound: (outbound as any[]).length,
+      },
+      missedCalls: missed,
+      answeredCalls: answered,
+      outboundCalls: outbound,
+    };
+
+    console.log(`[Dashboard] TOTAL: ${(performance.now() - totalStart).toFixed(2)} ms`);
+
+    return result;
+  }
+}
